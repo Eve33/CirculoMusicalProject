@@ -1,8 +1,8 @@
 <?php
-  include '../PHP/InsertComentPub.php';
-?>
+session_start();
 
-  <!doctype html>
+?>
+<!doctype html>
   <html lang="en">
 
   <head>
@@ -99,9 +99,7 @@
                   if(isset($_SESSION['comentsPub']))
                   {
                     echo $_SESSION['comentsPub'];
-                  }
-                  else{
-                    echo "idiot";
+                    session_destroy();
                   }
               ?>
             </p>
