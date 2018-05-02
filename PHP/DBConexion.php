@@ -43,7 +43,7 @@ class User
             header('Location: ../SignUp/SignUp.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['signinuser'] = "El usuario no se ha registrado.";            
+            $_SESSION['signinuser'] = "El usuario no se ha registrado correctamente.";            
             echo "Error en el registro de usuario. " . $ex->getMessage();
             header('Location: ../SignUp/SignUp.php');  
         }
@@ -60,12 +60,14 @@ class User
                 return true;
             }
             else{
-                $_SESSION['loginuser'] = "El usuario o la contraseña no son válidos con algun registro.";                                
+                $_SESSION['loginuser'] = "El usuario o la contraseña no son válidos con algun registro."; 
+                header('Location: ../LogIn/LogIn.php');                                 
                 return false;
             }
        }catch(PDOException $e)
        {
-        echo "Error en verificar usuario.", $e->getMessage();
+            $_SESSION['loginuser'] = "Error en verificar usuario.", $e->getMessage();
+            header('Location: ../LogIn/LogIn.php');  
        } 
     }
 

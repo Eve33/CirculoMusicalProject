@@ -1,7 +1,7 @@
 <?php
 session_start();
     if(isset($_SESSION['loginuser'])){
-        header('Location: ../Cover/Cover.html');
+        header('Location: ../LogIn/LogIn.php');
     }
 ?>
 <!doctype html>
