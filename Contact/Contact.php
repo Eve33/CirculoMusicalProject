@@ -48,7 +48,7 @@
             <a class="nav-link" href="../Events/Events.html">Eventos</a>
           </li>
           <li class="nav-item active font-weight-bold">
-            <a class="nav-link" href="../Contact/Contact.html">Contacto</a>
+          <a class="nav-link" href="../Contact/Contact.php">Contacto</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../Gallery/Gallery.html">Galeria</a>

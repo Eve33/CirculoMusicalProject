@@ -180,11 +180,6 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Baja de Eventos</h1>
-      <label for="inputUser" class="sr-only">Asunto</label>
-      <select id="inputUser" name="estadoBaja" class="form-control" required autofocus>
-        <option value="En Espera">En Espera</option>
-        <option value="Rechazado">Rechazado</option>
-      </select>
       <label for="inputUser" class="sr-only">ID Eventos</label>
       <select id="inputUser" name="idEve" class="form-control" required autofocus>
         <?php
@@ -193,6 +188,11 @@
           echo'<option value='.$d['idEvento'].'>'.$d['idEvento'] .' </option>';
         } 
       ?>
+      </select>
+      <label for="inputUser" class="sr-only">Asunto</label>
+      <select id="inputUser" name="estadoBaja" class="form-control" required autofocus>
+        <option value="En Espera">En Espera</option>
+        <option value="Rechazado">Rechazado</option>
       </select>
       <p class="messageAlert">
         <?php
