@@ -441,10 +441,21 @@ class User
     public function deleteEvent($idEve, $state){
         try {  
 
-            $sql = "DELETE FROM `evento` WHERE `idEvento` = ?";
+            $sql = "SELECT `idSolicitud` FROM `evento` WHERE `idEvento` = ?";
+            $solic = $this->db->prepare($sql);  
+            $solic->execute(array($idEve));
+            $v = $solic->fetch(PDO::FETCH_ASSOC);
 
-            $instruccion = $this->db->prepare($sql);
-            $instruccion->execute(array($idEve));
+            $idSolic = $v['idSolicitud'];
+
+            $sql1 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
+            $instruccion1 = $this->db->prepare($sql1);
+
+            $sql2 = "DELETE FROM `evento` WHERE `idEvento` = ?";
+            $instruccion2 = $this->db->prepare($sql2);
+
+            $instruccion1->execute(array($state, $idSolic));
+            $instruccion2->execute(array($idEve));
 
             $_SESSION['deleteEve'] = "El evento se ha dado de baja correctamente.";
             header('Location: ../UserAdmin/AdminEvents.php');  
