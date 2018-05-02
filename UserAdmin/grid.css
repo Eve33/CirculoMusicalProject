@@ -1,0 +1,62 @@
+body {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.table-consult{
+  width: 100%;
+}
+
+h3 {
+  margin-top: 2rem;
+}
+
+.row {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.col-1{
+  padding-left: 1rem;
+  padding-right: 6rem;
+  text-align: center;
+}
+
+[class*="col-"] {
+  color:white;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  background-color: rgba(230, 230, 230, 0.479);
+  border: rgba(230, 230, 230, 0.479);
+  color: black;
+}
+
+.headerTableA{
+  background-color: rgba(85, 0, 255, 0.863);
+  border: 1px solid #5400FF;
+  color:white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.headerTableP{
+  background-color: #00FF77;
+  border: 1px solid rgb(0, 223, 104);
+  color:white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.headerTableP{
+  background-color: #FF006E;
+  border: 1px solid rgb(230, 0, 99);
+  color:white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

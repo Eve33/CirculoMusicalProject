@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../resources/iconCM.png">
+
+    <title>Productos | CM</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="products.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="../Cover/Cover.html"><img src="../resources/iconCM.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">   
+          <li class="nav-item">
+              <a class="nav-link" href="../Index/Index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../About/About.html">Acerca</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Artists/Artists.html">Artistas</a>
+          </li>
+          <li class="nav-item active font-weight-bold">
+              <a class="nav-link" href="../Products/Products.html">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Events/Events.html">Eventos</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="../Contact/Contact.html">Contacto</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="../Gallery/Gallery.html">Galeria</a>
+          </li>
+        </ul>
+        <a class="btn btn-sm  btn-primary btnLogin" href="../LogIn/LogIn.php">Inicia Sesión</a>
+        <a class="btn btn-sm btn-primary btnSignup" href="../SignUp/SignUp.php">Regístrate</a>
+      </div>
+    </nav>
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+      <div class="col-md-5 p-lg-5 mx-auto" background="../resources/loginBackground.jpg">
+        <h1 class="display-4 font-weight-normal">Nuestros productos</h1>
+        <p class="lead font-weight-normal">Como ideal, nuestro propósito es darle a usted una solución a sus eventos, incluyendo la producción, montajes, iluminación y escenarios. Tenemos la solución integral en iluminación, audio y video para hacer de su evento, un éxito.</p>
+        <a class="btn btn-outline-secondary" href="../SignUp/SignUp.html">Regístrate</a>
+      </div>
+      <div class="product d-none d-md-block"><img src="../resources/productsBannerA.jpg"></div>
+      <div class="product product-2 d-none d-md-block"><img src="../resources/productsBannerB.jpg"></div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+        <div class="my-3 py-3">
+          <h2 class="display-5">Estructuras</h2>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEstructuras">Ver Estructuras</button>
+        </div>
+        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"><img class="product-img" src="../resources/productA.jpg" alt=""></div>
+      </div>
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Iluminación</h2>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalIluminacion">Ver Iluminación</button>
+        </div>
+        <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"><img class="product-img" src="../resources/productB.jpg" alt=""></div>
+      </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Máquinas</h2>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMaquinas">Ver Maquinas</button>
+        </div>
+        <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"><img class="product-img" src="../resources/productC.jpg" alt=""></div>
+      </div>
+      <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+        <div class="my-3 py-3">
+          <h2 class="display-5">Pantallas Led</h2>
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalPantallas">Ver Pantallas Led</button>
+        </div>
+        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"><img class="product-img" src="../resources/productD.jpg" alt=""></div>
+      </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 p-3">
+          <h2 class="display-5">Audio</h2>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAudio">Ver Audio</button>
+        </div>
+        <div class="bg-white box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"><img class="product-img" src="../resources/productE.jpg" alt=""></div>
+      </div>
+      <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 py-3">
+          <h2 class="display-5">Otras estructuras</h2>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalOtras">Ver Otras Estructuras</button>
+        </div>
+        <div class="bg-white box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"><img class="product-img" src="../resources/productF.jpg" alt=""></div>
+      </div>
+    </div>
+
+    <footer class="blog-footer">
+      <p>Supported by <a href="https://getbootstrap.com/">Bootstrap</a>, <a href="https://www.javascript.com/">JavaScript</a>, <a href="https://www.php.net/">PHP</a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../bootstrap/assets/js/vendor/popper.min.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bootstrap/assets/js/vendor/holder.min.js"></script>
+    <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+
+      <!-- The Modals
+    ================================================== -->
+      <div class="modal fade" id="modalEstructuras">
+        <div class="modal-dialog">
+          <div class="modal-content">          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Producto | Estructuras</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>         
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="p-3 bg-white rounded box-shadow">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Nuestras Estructuras</h6>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Escenario A</strong>
+                    Escenarios de 12 columnas.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Escenario B</strong>
+                    Escenario de 24 columnas.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Escenario C</strong>
+                    Escenario de 32 columnas.
+                  </p>
+                </div>
+              </div>        
+            </div>     
+            <!-- Modal footer -->    
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalIluminacion">
+        <div class="modal-dialog">
+          <div class="modal-content">          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Producto | Iluminación</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>         
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="p-3 bg-white rounded box-shadow">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Nuestras Iluminaciones</h6>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Iluminación Robótica</strong>
+                    Robots adaptables para iluminación arriba o abajo del escenario.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Sistema de Luces Láser</strong>
+                    Luces laser con distancia a 80mtrs.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Proyector de Video</strong>
+                    Proyector para pantallas planas con distancia a 15mtrs.
+                  </p>
+                </div>
+              </div>        
+            </div>     
+            <!-- Modal footer --> 
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal fade" id="modalMaquinas">
+        <div class="modal-dialog">
+          <div class="modal-content">          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Producto | Máquinas</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>         
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="p-3 bg-white rounded box-shadow">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Nuestras Maquinas</h6>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Máquina de Humo</strong>
+                    Máquina que emite humo por mas de 8hrs continuas.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Máquina de Burbujas</strong>
+                    Maquina que emite burbujas en intervalos de 30min continuos hasta 8hrs.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Máquina de Espuma</strong>
+                    Máquina que emite espuma a una distancia de 15mtrs.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Generador</strong>
+                    Generador eléctrico variable de hasta 200kva.
+                  </p>
+                </div>
+              </div>        
+            </div>     
+            <!-- Modal footer --> 
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalPantallas">
+        <div class="modal-dialog">
+          <div class="modal-content">          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Producto | Pantallas</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>         
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="p-3 bg-white rounded box-shadow">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Nuestras Pantallas Led</h6>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Pantalla A</strong>
+                    Pantalla pitch 10mm soporta cualquier condición climática (Hasta 10mtrs del espectador).
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Pantalla B</strong>
+                    Pantalla pitch 16mm soporta cualquier condición climática (Hasta 26mtrs del espectador).
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Pantalla C</strong>
+                    Pantalla pitch 25 mm soporta cualquier condición climática (Hasta 52mtrs del espectador).
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Pantalla Plasma</strong>
+                    Pantalla de plasma de 60".
+                  </p>
+                </div>
+              </div>        
+            </div>     
+            <!-- Modal footer --> 
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalAudio">
+        <div class="modal-dialog">
+          <div class="modal-content">          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Producto | Productos de Audio</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>         
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="p-3 bg-white rounded box-shadow">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Nuestro Productos de Audio</h6>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Microfonía</strong>
+                    Microfonía de punta hasta 30 micrófonos.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Consola de Audio</strong>
+                    Para conectar diversos elementos emisores de audio, tales como micrófonos, entradas de línea, samplers, sintetizadores, gira discos de vinilos, reproductores de cd, reproductores de cintas, etc.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Sistema de Audio</strong>
+                    Paquete de bocinas de audio woofers, medios, agudos y bafles.
+                  </p>
+                </div>
+              </div>        
+            </div>     
+            <!-- Modal footer --> 
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalOtras">
+        <div class="modal-dialog">
+          <div class="modal-content">          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Producto | Otras Estructuras</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>         
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="p-3 bg-white rounded box-shadow">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Otros Tipos de Estructuras</h6>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Grada</strong>
+                    Grada de 8mtrs x 6mtrs x 3mtrs de material resistible.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Valla</strong>
+                    Valla de 2.5mtrs x 1.5mtrs de material acero.
+                  </p>
+                </div>
+                <div class="media text-muted pt-3">
+                  <img src="../resources/iconCM.png" alt="" class="mr-2 rounded">
+                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Carpa</strong>
+                    Carpa auto-ajustable, impermeable, de hasta 20mtrs x 10mtrs x 5mtrs.
+                  </p>
+                </div>
+              </div>        
+            </div>     
+            <!-- Modal footer --> 
+          </div>
+        </div>
+      </div>
+
+  </body>
+</html>
