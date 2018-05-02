@@ -91,8 +91,9 @@
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['insertInvent']))
-                  echo $_SESSION['insertInvent'];
+               {   echo $_SESSION['insertInvent'];
                   unset($_SESSION['insertInvent']);
+               }
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sumar producto</button>
@@ -157,8 +158,9 @@
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['deleteInvent']))
-                  echo $_SESSION['deleteInvent'];
+               {   echo $_SESSION['deleteInvent'];
                   unset($_SESSION['deleteInvent']);
+               }
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Restar producto</button>

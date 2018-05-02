@@ -1,7 +1,7 @@
 <?php
-session_start();
-
+  session_start();
 ?>
+
 <!doctype html>
   <html lang="en">
 
@@ -99,7 +99,7 @@ session_start();
                   if(isset($_SESSION['comentsPub']))
                   {
                     echo $_SESSION['comentsPub'];
-                    session_destroy();
+                    unset($_SESSION['comentsPub']);
                   }
               ?>
             </p>

@@ -89,9 +89,9 @@
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['insertArtist']))
-                  echo $_SESSION['insertArtist'];
+              {    echo $_SESSION['insertArtist'];
                   unset($_SESSION['insertArtist']);
-
+              }
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Dar Alta</button>
@@ -135,8 +135,10 @@
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['deleteArtist']))
-                  echo $_SESSION['deleteArtist'];
+               {   
+                 echo $_SESSION['deleteArtist'];
                   unset($_SESSION['deleteArtist']);
+               }
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Dar Baja</button>

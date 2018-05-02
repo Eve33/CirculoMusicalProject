@@ -101,7 +101,9 @@
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['insertProd']))
-                  echo $_SESSION['insertProd'];
+              {    echo $_SESSION['insertProd'];
+                  unset($_SESSION['insertProd']);
+              }
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Dar Alta</button>
@@ -146,7 +148,9 @@
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['deleteProd']))
-                  echo $_SESSION['deleteProd'];
+              {    echo $_SESSION['deleteProd'];
+                  unset($_SESSION['deleteProd']);
+              }
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Dar Baja</button>
