@@ -324,12 +324,51 @@ class User
         }
     }
 
+    //Para solicitudes especificas
+    public function consultSolicEvent(){
+        try {
+            $option = "Evento";
+            $state = "En Espera";
+            $sql = "SELECT * FROM `solicitud` WHERE `asunto` = ? AND `estado` = ?";
+            $solicitudE = $this->db->prepare($sql);  
+            $solicitudE->execute(array($option, $state));
+            $table = $solicitudE;
+            return $table;
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener la tabla de solicitud de Eventos." . $ex->getMessage();
+        } 
+    }
 
+    public function consultSolicRenta(){
+        try {
+            $option = "Renta";
+            $sql = "SELECT * FROM `solicitud` WHERE `asunto` = ?";
+            $solicitudE = $this->db->prepare($sql);  
+            $solicitudE->execute(array($option));
+            $table = $solicitudE;
+            return $table;
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener la tabla de solicitud de Eventos." . $ex->getMessage();
+        } 
+    }
 
+    public function consultSolicVenta(){
+        try {
+            $option = "Venta";
+            $sql = "SELECT * FROM `solicitud` WHERE `asunto` = ?";
+            $solicitudE = $this->db->prepare($sql);  
+            $solicitudE->execute(array($option));
+            $table = $solicitudE;
+            return $table;
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener la tabla de solicitud de Eventos." . $ex->getMessage();
+        } 
+    }
 
-
-
-
+    //Para eventos del admin
     public function consultEvent(){       
         try {
             $sql = "SELECT * FROM `evento`";
@@ -356,7 +395,7 @@ class User
         } 
     }
 
-    public function insertEvent($nombreEve, $fecha, $locacion, $nEntr, $pEntr, $idArt){
+    public function insertEvent($idSolic, $nombreEve, $fecha, $locacion, $nEntr, $pEntr, $idArt){
         try {  
             $sql = "SELECT * FROM `evento`";
             $eventValidator = $this->db->prepare($sql);  
@@ -377,23 +416,31 @@ class User
                 header('Location: ../UserAdmin/AdminEvents.php'); 
             }
             else{
-                $sql1 = "INSERT INTO `evento`(`nombre`, `fecha`, `locacion`, `numeroEntradas`, `precioEntrada`, `idArtista`) VALUES (?,?,?,?,?,?)";
 
-                $instruccion = $this->db->prepare($sql1);
-                $instruccion->execute(array($nombreEve, $fecha, $locacion, $nEntr, $pEntr, $idArt));
+                $state = "Aprobado";
+
+                $sql1 = "INSERT INTO `evento`(`idSolicitud`,`nombre`, `fecha`, `locacion`, `numeroEntradas`, `precioEntrada`, `idArtista`) VALUES (?,?,?,?,?,?,?)";
+                $instruccion = $this->db->prepare($sql1);              
+
+                $sql2 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
+                $instruccion2 = $this->db->prepare($sql2);
+
+                $instruccion->execute(array($idSolic, $nombreEve, $fecha, $locacion, $nEntr, $pEntr, $idArt));
+                $instruccion2->execute(array($state, $idSolic));
 
                 $_SESSION['insertEve'] = "El evento se ha dado de alta correctamente.".$ex;
                 header('Location: ../UserAdmin/AdminEvents.php');  
             }
         }
         catch (PDOException $ex) {
-            $_SESSION['insertEve'] = "El evento no se ha dado de alta correctamente.";            
+            $_SESSION['insertEve'] = "El evento no se ha dado de alta correctamente.".$ex;            
             header('Location: ../UserAdmin/AdminEvents.php');  
         }
     }
 
-    public function deleteEvent($idEve){
+    public function deleteEvent($idEve, $state){
         try {  
+
             $sql = "DELETE FROM `evento` WHERE `idEvento` = ?";
 
             $instruccion = $this->db->prepare($sql);
