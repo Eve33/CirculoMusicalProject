@@ -1,5 +1,5 @@
 <?php
-    include '../PHP/InsertComentPub.php';
+  include '../PHP/InsertComentPub.php';
 ?>
 
   <!doctype html>
@@ -96,9 +96,13 @@
             </div>
             <p class="messageAlert">
               <?php
-              if(isset($_SESSION['sendMessage']))
-                  echo $_SESSION['sendMessage'];
-                  unset($_SESSION['sendMessage']);
+                  if(isset($_SESSION['comentsPub']))
+                  {
+                    echo $_SESSION['comentsPub'];
+                  }
+                  else{
+                    echo "idiot";
+                  }
               ?>
             </p>
             <button class="btn btn-sm btn-primary" type="submit" name="button">

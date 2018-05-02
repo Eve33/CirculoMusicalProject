@@ -66,7 +66,7 @@ class User
             }
        }catch(PDOException $e)
        {
-            $_SESSION['loginuser'] = "Error en verificar usuario.", $e->getMessage();
+            $_SESSION['loginuser'] = "Error en verificar usuario.".$e->getMessage();
             header('Location: ../LogIn/LogIn.php');  
        } 
     }
@@ -315,11 +315,11 @@ class User
             $instruccion = $this->db->prepare($sql);
             $instruccion->execute(array($nomPub, $emailPub, $telefPub, $mensajePub));
 
-            $_SESSION['sendMessage'] = "Se ha enviado correctamente tu comentario.";
+            $_SESSION['comentsPub'] = "Se ha enviado correctamente tu comentario.";
             header('Location: ../Contact/Contact.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['sendMessage'] = "No se ha enviado correctamente tu comentario.";            
+            $_SESSION['comentsPub'] = "No se ha enviado correctamente tu comentario.";   
             header('Location: ../Contact/Contact.php');  
         }
     }
