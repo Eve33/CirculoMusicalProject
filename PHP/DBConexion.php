@@ -480,7 +480,20 @@ class User
         }
     }
 
-    
+     //Para ventas
+
+     public function consultVenta(){
+        try {
+            $sql = "SELECT * FROM `venta`";
+            $invents = $this->db->prepare($sql);  
+            $invents->execute();
+            $table = $invents;
+            return $table;
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener la tabla de Venta." . $ex->getMessage();
+        } 
+    }
 
 
 

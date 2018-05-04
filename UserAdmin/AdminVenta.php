@@ -109,14 +109,37 @@
       </select>
       <p class="messageAlert">
         <?php
-              if(isset($_SESSION['insertEve']))
-                  echo $_SESSION['insertEve'];
+              if(isset($_SESSION['insertVent']))
+                  echo $_SESSION['insertVent'];
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Venta</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
+    <form class="form-signin" action="../PHP/InsertEvent.php" method="POST">
+      <a href="../Cover/Cover.html">
+        <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
+      </a>
+      <h1 class="h3 mb-3 font-weight-normal">Baja de Venta</h1>
+      <label for="inputUser" class="sr-only">ID Venta</label>
+      <select id="inputUser" name="idSolic" class="form-control" required autofocus>
+        <?php
+        while($d = $consultV->fetch(PDO::FETCH_ASSOC))
+        {
+          echo'<option value='.$d['idVenta'].'>'.$d['idVenta'] .' </option>';
+        } 
+      ?>
+      </select>
+      <p class="messageAlert">
+        <?php
+              if(isset($_SESSION['deleteVent']))
+                  echo $_SESSION['deleteVent'];
+          ?>
+      </p>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar Venta</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+    </form>
 
     <main role="main">
       <!-- Marketing messaging and featurettes
