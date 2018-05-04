@@ -42,8 +42,7 @@ class User
             header('Location: ../SignUp/SignUp.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['signinuser'] = "El usuario no se ha registrado correctamente.";            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
+            $_SESSION['signinuser'] = "El usuario no se ha registrado." + $ex;            
             header('Location: ../SignUp/SignUp.php');  
         }
     }
@@ -78,15 +77,15 @@ class User
             $typeUser = $sql->fetch(PDO::FETCH_ASSOC)['idUsuario'];
             return $typeUser;
         }
-        catch(PDOException $e)
+        catch(PDOException $ex)
         {
-            echo $e->getMessage();
+            echo $ex->getMessage();
         }
     }
 
-    //Para Administrador
+    //PARA ADMINISTRADOR
 
-    //Para artistas del admin
+    //Para ARTISTA del admin
 
     public function consultArtist(){       
         try {
@@ -101,23 +100,9 @@ class User
         } 
     }
 
-    public function getIDArtist(){       
-        try {
-            $sql = "SELECT `idArtista` FROM `artista`";
-            $idArt = $this->db->prepare($sql);  
-            $idArt->execute();
-            $table = $idArt;
-            return $table;
-        }
-        catch (PDOException $ex) {
-            echo "Error al obtener la tabla de artistas." . $ex->getMessage();
-        } 
-    }
-
     public function insertArtist($nombre, $genero, $biografia, $precio){
         try {  
             $sql = "INSERT INTO `artista`(`nombre`, `genero`, `biografia`, `precioContratacion`) VALUES (?,?,?,?)";
-
             $instruccion = $this->db->prepare($sql);
             $instruccion->execute(array($nombre, $genero, $biografia, $precio));
 
@@ -125,8 +110,7 @@ class User
             header('Location: ../UserAdmin/AdminArtist.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['insertArtist'] = "El artista no se ha dado de alta correctamente.";            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
+            $_SESSION['insertArtist'] = "El artista no se ha dado de alta correctamente." + $ex;            
             header('Location: ../UserAdmin/AdminArtist.php');  
         }
     }
@@ -134,7 +118,6 @@ class User
     public function deleteArtist($idArt){
         try {  
             $sql = "DELETE FROM `artista` WHERE `idArtista` = ?";
-
             $instruccion = $this->db->prepare($sql);
             $instruccion->execute(array($idArt));
 
@@ -142,32 +125,19 @@ class User
             header('Location: ../UserAdmin/AdminArtist.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['deleteArtist'] = "El artista no se ha dado de baja correctamente.";            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
+            $_SESSION['deleteArtist'] = "El artista no se ha dado de baja correctamente." + $ex;            
             header('Location: ../UserAdmin/AdminArtist.php');  
         }
     }
 
-    //Para productos del admin
+    //Para PRODUCTO del admin
+
     public function consultProduct(){       
         try {
             $sql = "SELECT * FROM `producto`";
             $products = $this->db->prepare($sql);  
             $products->execute();
             $table = $products;
-            return $table;
-        }
-        catch (PDOException $ex) {
-            echo "Error al obtener la tabla de productos." . $ex->getMessage();
-        } 
-    }
-
-    public function getIDProduct(){       
-        try {
-            $sql = "SELECT `idProducto` FROM `producto`";
-            $idArt = $this->db->prepare($sql);  
-            $idArt->execute();
-            $table = $idArt;
             return $table;
         }
         catch (PDOException $ex) {
@@ -187,7 +157,6 @@ class User
         }
         catch (PDOException $ex) {
             $_SESSION['insertProd'] = "El producto no se ha dado de alta correctamente.";            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
             header('Location: ../UserAdmin/AdminProducts.php');  
         }
     }
@@ -204,12 +173,11 @@ class User
         }
         catch (PDOException $ex) {
             $_SESSION['deleteProd'] = "El producto no se ha dado de baja correctamente.";            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
             header('Location: ../UserAdmin/AdminProducts.php');  
         }
     }
 
-    //Para inventarios del admin
+    //Para INVENTARIO del admin
 
     public function consultInvent(){
         try {
@@ -627,10 +595,6 @@ class User
         }
     }
 
-    
-
-
-
     //Para cliente
 
     //Para solicitudes del cliente
@@ -678,7 +642,6 @@ class User
         }
         catch (PDOException $ex) {
             $_SESSION['insertSolic'] = "La solicitud no se ha dado de alta correctamente.".$ex;            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
             header('Location: ../UserClient/ClientSolic.php');  
         }
     }
