@@ -130,7 +130,7 @@
       <?php
         while($v = $consultV->fetch(PDO::FETCH_ASSOC))
         {
-          echo '<div class="row"> <div class="col-1">'.$v['idVenta'].'</div> <div class="col-1">'.$v['idSolicitud'].'</div> <div class="col-1">'.$v['fecha'].'</div> <div class="col-1">'.$v['hora'].'</div> <div class="col-1">'.$e['total'].'</div> <div class="col-1">'.'</div> </div>';
+          echo '<div class="row"> <div class="col-1">'.$v['idVenta'].'</div> <div class="col-1">'.$v['idSolicitud'].'</div> <div class="col-1">'.$v['fecha'].'</div> <div class="col-1">'.$v['hora'].'</div> <div class="col-1">'.$v['total'].'</div> </div>';
         } 
       ?>
         <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>

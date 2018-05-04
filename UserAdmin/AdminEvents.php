@@ -192,7 +192,7 @@
       <label for="inputUser" class="sr-only">Asunto</label>
       <select id="inputUser" name="estadoBaja" class="form-control" required autofocus>
         <option value="En Espera">En Espera</option>
-        <option value="Rechazado">Rechazado</option>
+        <option value="Cancelado">Cancelado</option>
       </select>
       <p class="messageAlert">
         <?php

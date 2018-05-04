@@ -62,7 +62,7 @@
       <select id="inputUser" name="asuntoSolic" class="form-control" required autofocus>
         <option value="Evento">Evento</option>
         <option value="Renta">Renta</option>
-        <option value="Compra">Venta</option>
+        <option value="Venta">Venta</option>
       </select>
       <label for="inputUser" class="sr-only">Descripción</label>
       <textarea class="form-control" name="descSolic" rows="3" placeholder="Descripción Producto" required></textarea>

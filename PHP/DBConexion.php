@@ -499,13 +499,18 @@ class User
     {
         try{
             $sql = "INSERT INTO `venta`(`idSolicitud`, `fecha`, `hora`, `total`) VALUES (?,?,?,?)";
+            $sql2 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
+            $instruccion = $this->db->prepare($sql);
+            $instruccion2 = $this->db->prepare($sql2);
 
             $timeActual = date('H:i:s');
             $dateActual = date('Y-m-d');
             $price = 0.00;
 
-            $instruccion = $this->db->prepare($sql);
+            $state = 'Aprobado';
+
             $instruccion->execute(array($idSolic, $dateActual, $timeActual, $price));
+            $instruccion2->execute(array($state, $idSolic));
 
             $_SESSION['insertVent'] = "La venta se ha insertado correctamente.";
             header('Location: ../UserAdmin/AdminVenta.php');  
@@ -519,16 +524,29 @@ class User
     public function deleteVenta($idVent)
     {
         try {  
-            $sql = "DELETE FROM `venta` WHERE `idVenta` = ?";
+            $state = "Cancelado";
 
-            $instruccion = $this->db->prepare($sql);
-            $instruccion->execute(array($idArt));
+            $sql = "SELECT `idSolicitud` FROM `venta` WHERE `idVenta` = ?";
+            $solic = $this->db->prepare($sql);  
+            $solic->execute(array($idVent));
+            $v = $solic->fetch(PDO::FETCH_ASSOC);
 
-            $_SESSION['deleteVent'] = "La venta se ha eliminado correctamente.";
+            $idSolic = $v['idSolicitud'];
+
+            $sql1 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
+            $instruccion1 = $this->db->prepare($sql1);
+
+            $sql2 = "DELETE FROM `venta` WHERE `idVenta` = ?";
+            $instruccion2 = $this->db->prepare($sql2);
+
+            $instruccion1->execute(array($state, $idSolic));
+            $instruccion2->execute(array($idVent));
+
+            $_SESSION['deleteVent'] = "El evento se ha dado de baja correctamente.";
             header('Location: ../UserAdmin/AdminVenta.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['deleteVent'] = "La venta no se ha eliminado correctamente.";            
+            $_SESSION['deleteVent'] = "El evento no se ha dado de baja correctamente.";            
             header('Location: ../UserAdmin/AdminVenta.php');  
         }
     }
@@ -569,13 +587,13 @@ class User
         }
     }
 
-    public function deleteRenta($idVent)
+    public function deleteRenta($idRent)
     {
         try {  
             $sql = "DELETE FROM `renta` WHERE `idRenta` = ?";
 
             $instruccion = $this->db->prepare($sql);
-            $instruccion->execute(array($idArt));
+            $instruccion->execute(array($idRent));
 
             $_SESSION['deleteRent'] = "La renta se ha eliminado correctamente.";
             header('Location: ../UserAdmin/AdminRenta.php');  
