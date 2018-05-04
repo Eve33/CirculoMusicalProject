@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2018 a las 05:21:15
+-- Tiempo de generación: 04-05-2018 a las 17:45:36
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -167,9 +167,9 @@ CREATE TABLE `producto` (
 
 CREATE TABLE `renta` (
   `idRenta` int(11) NOT NULL,
+  `idSolicitud` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `hora` time NOT NULL,
-  `idCliente` int(11) NOT NULL,
+  `hora` date NOT NULL,
   `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -218,9 +218,9 @@ INSERT INTO `usuario` (`idUsuario`, `usuario`, `password`, `tipoUsuario`, `idInf
 
 CREATE TABLE `venta` (
   `idVenta` int(11) NOT NULL,
+  `idSolicitud` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `idCliente` int(11) NOT NULL,
   `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -291,7 +291,7 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `renta`
   ADD PRIMARY KEY (`idRenta`),
-  ADD KEY `FK_IdCliente` (`idCliente`) USING BTREE;
+  ADD KEY `FK_IdSolicitud` (`idSolicitud`) USING BTREE;
 
 --
 -- Indices de la tabla `solicitud`
@@ -313,7 +313,7 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `venta`
   ADD PRIMARY KEY (`idVenta`),
-  ADD KEY `FK_IdCliente` (`idCliente`) USING BTREE;
+  ADD KEY `FK_IdSolicitud` (`idSolicitud`) USING BTREE;
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -420,7 +420,7 @@ ALTER TABLE `inventario`
 -- Filtros para la tabla `renta`
 --
 ALTER TABLE `renta`
-  ADD CONSTRAINT `renta_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `renta_ibfk_1` FOREIGN KEY (`idSolicitud`) REFERENCES `solicitud` (`idSolicitud`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `solicitud`
@@ -438,7 +438,7 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idSolicitud`) REFERENCES `solicitud` (`idSolicitud`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

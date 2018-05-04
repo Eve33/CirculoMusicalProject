@@ -97,18 +97,18 @@
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
-      <h1 class="h3 mb-3 font-weight-normal">Alta de Eventos</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Alta de Venta</h1>
       <label for="inputUser" class="sr-only">ID Solicitud</label>
       <select id="inputUser" name="idSolic" class="form-control" required autofocus>
         <?php
-        while($d = $consultSE1->fetch(PDO::FETCH_ASSOC))
+        while($d = $consultSV1->fetch(PDO::FETCH_ASSOC))
         {
           echo'<option value='.$d['idSolicitud'].'>'.$d['idSolicitud'] .' </option>';
         } 
       ?>
       </select>
-      <label for="inputUser" class="sr-only">Nombre Evento</label>
-      <input type="text" id="nombreEve" name="nombreEve" class="form-control" placeholder="Nombre de evento" required autofocus>
+      <label for="inputUser" class="sr-only">Nombre Venta</label>
+      <input type="time" id="nombreVenta" name="nombreVenta" class="form-control" placeholder="Nombre de Vent" required autofocus>
       <label for="inputUser" class="sr-only">Fecha Evento</label>
       <input type="date" class="form-control" name="fechaEve" value="" placeholder="Fecha Evento" required>
       <label for="inputUser" class="sr-only">Locación</label>
@@ -137,72 +137,6 @@
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
-    <div class="table-consult">
-      <h3>Eventos</h3>
-      <p>Esta tabla te permitirá administrar a tus eventos.</p>
-      <div class="row">
-        <div class="col-1 headerTableA">ID Eventos</div>
-        <div class="col-1 headerTableA">ID Solicitud</div>
-        <div class="col-1 headerTableA">Nombre</div>
-        <div class="col-1 headerTableA">Fecha</div>
-        <div class="col-1 headerTableA">Locación</div>
-        <div class="col-1 headerTableA"># Entradas</div>
-        <div class="col-1 headerTableA">Precio Entrada</div>
-        <div class="col-1 headerTableA">ID Artista</div>
-      </div>
-      <?php
-        while($e = $consultE->fetch(PDO::FETCH_ASSOC))
-        {
-          echo '<div class="row"> <div class="col-1">'.$e['idEvento'].'</div> <div class="col-1">'.$e['idSolicitud'].'</div> <div class="col-1">'.$e['nombre'].'</div> <div class="col-1">'.$e['fecha'].'</div> <div class="col-1">'.$e['locacion'].'</div> <div class="col-1">'.$e['numeroEntradas'].'</div> <div class="col-1">'.$e['precioEntrada'].'</div> <div class="col-1">'.$e['idArtista'].'</div> </div>';
-        } 
-      ?>
-        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-    </div>
-
-    <div class="table-consult">
-      <h3>ID Artista</h3>
-      <p>Esta tabla es para consultar el ID Artista para tu alta de evento.</p>
-      <div class="row">
-        <div class="col-1 headerTableA">ID Artista</div>
-        <div class="col-1 headerTableA">Nombre</div>
-      </div>
-      <?php
-        while($a = $consultA->fetch(PDO::FETCH_ASSOC))
-        {
-          echo '<div class="row"> <div class="col-1">'.$a['idArtista'].'</div> <div class="col-1">'.$a['nombre'].'</div> </div>';
-        } 
-      ?>
-        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-    </div>
-
-    <form class="form-signin" action="../PHP/DeleteEvent.php" method="POST">
-      <a href="../Cover/Cover.html">
-        <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
-      </a>
-      <h1 class="h3 mb-3 font-weight-normal">Baja de Eventos</h1>
-      <label for="inputUser" class="sr-only">ID Eventos</label>
-      <select id="inputUser" name="idEve" class="form-control" required autofocus>
-        <?php
-        while($d = $consultIDE->fetch(PDO::FETCH_ASSOC))
-        {
-          echo'<option value='.$d['idEvento'].'>'.$d['idEvento'] .' </option>';
-        } 
-      ?>
-      </select>
-      <label for="inputUser" class="sr-only">Asunto</label>
-      <select id="inputUser" name="estadoBaja" class="form-control" required autofocus>
-        <option value="En Espera">En Espera</option>
-        <option value="Rechazado">Rechazado</option>
-      </select>
-      <p class="messageAlert">
-        <?php
-              if(isset($_SESSION['deleteEve']))
-                  echo $_SESSION['deleteEve'];
-          ?>
-      </p>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Dar Baja</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-    </form>
 
     <main role="main">
       <!-- Marketing messaging and featurettes
