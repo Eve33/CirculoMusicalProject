@@ -78,7 +78,7 @@
 
         <div class="col-md-5">
           <h4>
-            <strong>Escribenos en un solo toque</strong>
+            <strong>Escríbenos en un solo toque</strong>
           </h4>
           <br>
           <form action="../PHP/InsertComentPub.php" method="POST">
