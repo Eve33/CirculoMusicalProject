@@ -356,9 +356,10 @@ class User
     public function consultSolicRenta(){
         try {
             $option = "Renta";
-            $sql = "SELECT * FROM `solicitud` WHERE `asunto` = ?";
+            $state = "En Espera";
+            $sql = "SELECT * FROM `solicitud` WHERE `asunto` = ? AND `estado` = ?";
             $solicitudE = $this->db->prepare($sql);  
-            $solicitudE->execute(array($option));
+            $solicitudE->execute(array($option, $state));
             $table = $solicitudE;
             return $table;
         }
@@ -370,9 +371,10 @@ class User
     public function consultSolicVenta(){
         try {
             $option = "Venta";
-            $sql = "SELECT * FROM `solicitud` WHERE `asunto` = ?";
+            $state = "En Espera";
+            $sql = "SELECT * FROM `solicitud` WHERE `asunto` = ? AND `estado` = ?";
             $solicitudE = $this->db->prepare($sql);  
-            $solicitudE->execute(array($option));
+            $solicitudE->execute(array($option, $state));
             $table = $solicitudE;
             return $table;
         }
@@ -569,14 +571,21 @@ class User
     public function insertRenta($idSolic, $cantDias)
     {
         try{
-            $sql = "INSERT INTO `renta`(`idSolicitud`, `fecha`, `hora`, `cantDias`,`total`) VALUES (?,?,?,?,?)";
+
+            $state = "Aprobado";
+
+            $sql = "INSERT INTO `renta`(`idSolicitud`, `fecha`, `hora`, `cantDias`,`total`) VALUES (?,?,?,?,?)";    
+            $sql2 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
+            $instruccion = $this->db->prepare($sql);
+            $instruccion2 = $this->db->prepare($sql2);
 
             $timeActual = date('H:i:s');
             $dateActual = date('Y-m-d');
             $price = 0.00;
 
-            $instruccion = $this->db->prepare($sql);
             $instruccion->execute(array($idSolic, $dateActual, $timeActual, $cantDias, $price));
+            $instruccion2->execute(array($state, $idSolic));
+
 
             $_SESSION['insertVent'] = "La renta se ha insertado correctamente.";
             header('Location: ../UserAdmin/AdminRenta.php');  
@@ -590,10 +599,23 @@ class User
     public function deleteRenta($idRent)
     {
         try {  
-            $sql = "DELETE FROM `renta` WHERE `idRenta` = ?";
+            $state = "Cancelado";
 
-            $instruccion = $this->db->prepare($sql);
-            $instruccion->execute(array($idRent));
+            $sql = "SELECT `idSolicitud` FROM `renta` WHERE `idRenta` = ?";
+            $solic = $this->db->prepare($sql);  
+            $solic->execute(array($idRent));
+            $v = $solic->fetch(PDO::FETCH_ASSOC);
+
+            $idSolic = $v['idSolicitud'];
+
+            $sql1 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
+            $instruccion1 = $this->db->prepare($sql1);
+
+            $sql2 = "DELETE FROM `renta` WHERE `idRenta` = ?";
+            $instruccion2 = $this->db->prepare($sql2);
+
+            $instruccion1->execute(array($state, $idSolic));
+            $instruccion2->execute(array($idRent));
 
             $_SESSION['deleteRent'] = "La renta se ha eliminado correctamente.";
             header('Location: ../UserAdmin/AdminRenta.php');  
