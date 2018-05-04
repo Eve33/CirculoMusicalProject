@@ -262,20 +262,7 @@ class User
         } 
     }
 
-    public function getIDProductR(){       
-        try {
-            $sql = "SELECT `idProducto` FROM `inventario`";
-            $idArt = $this->db->prepare($sql);  
-            $idArt->execute();
-            $table = $idArt;
-            return $table;
-        }
-        catch (PDOException $ex) {
-            echo "Error al obtener la tabla de productos." . $ex->getMessage();
-        } 
-    }
-
-    //Para comentarios públicos
+    //Para COMENTARIOS PUBLICOS
     public function consultComentsPub(){
         try {
             $sql = "SELECT * FROM `comentPub`";
@@ -292,7 +279,6 @@ class User
     public function insertComentPub($nomPub, $emailPub, $telefPub, $mensajePub){
         try {  
             $sql = "INSERT INTO `comentpub`(`nombre`, `email`, `telefono`, `mensaje`) VALUES (?,?,?,?)";
-
             $instruccion = $this->db->prepare($sql);
             $instruccion->execute(array($nomPub, $emailPub, $telefPub, $mensajePub));
 
@@ -300,7 +286,7 @@ class User
             header('Location: ../Contact/Contact.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['comentsPub'] = "No se ha enviado correctamente tu comentario.";   
+            $_SESSION['comentsPub'] = "Error No se ha enviado tu comentario." + $ex;   
             header('Location: ../Contact/Contact.php');  
         }
     }
@@ -351,26 +337,13 @@ class User
         } 
     }
 
-    //Para eventos del admin
+    //Para EVENTOS del admin
     public function consultEvent(){       
         try {
             $sql = "SELECT * FROM `evento`";
             $events = $this->db->prepare($sql);  
             $events->execute();
             $table = $events;
-            return $table;
-        }
-        catch (PDOException $ex) {
-            echo "Error al obtener la tabla de evento." . $ex->getMessage();
-        } 
-    }
-
-    public function getIDEvent(){       
-        try {
-            $sql = "SELECT `idEvento` FROM `evento`";
-            $idEve = $this->db->prepare($sql);  
-            $idEve->execute();
-            $table = $idEve;
             return $table;
         }
         catch (PDOException $ex) {
@@ -403,11 +376,9 @@ class User
                 $state = "Aprobado";
 
                 $sql1 = "INSERT INTO `evento`(`idSolicitud`,`nombre`, `fecha`, `locacion`, `numeroEntradas`, `precioEntrada`, `idArtista`) VALUES (?,?,?,?,?,?,?)";
-                $instruccion = $this->db->prepare($sql1);              
-
                 $sql2 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
+                $instruccion = $this->db->prepare($sql1);              
                 $instruccion2 = $this->db->prepare($sql2);
-
                 $instruccion->execute(array($idSolic, $nombreEve, $fecha, $locacion, $nEntr, $pEntr, $idArt));
                 $instruccion2->execute(array($state, $idSolic));
 
@@ -432,11 +403,9 @@ class User
             $idSolic = $v['idSolicitud'];
 
             $sql1 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
-            $instruccion1 = $this->db->prepare($sql1);
-
             $sql2 = "DELETE FROM `evento` WHERE `idEvento` = ?";
+            $instruccion1 = $this->db->prepare($sql1);
             $instruccion2 = $this->db->prepare($sql2);
-
             $instruccion1->execute(array($state, $idSolic));
             $instruccion2->execute(array($idEve));
 
@@ -445,12 +414,11 @@ class User
         }
         catch (PDOException $ex) {
             $_SESSION['deleteEve'] = "El evento no se ha dado de baja correctamente.";            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
             header('Location: ../UserAdmin/AdminEvents.php');  
         }
     }
 
-     //Para ventas
+     //Para VENTAS
 
      public function consultVenta(){
         try {
@@ -504,11 +472,9 @@ class User
             $idSolic = $v['idSolicitud'];
 
             $sql1 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
-            $instruccion1 = $this->db->prepare($sql1);
-
             $sql2 = "DELETE FROM `venta` WHERE `idVenta` = ?";
+            $instruccion1 = $this->db->prepare($sql1);
             $instruccion2 = $this->db->prepare($sql2);
-
             $instruccion1->execute(array($state, $idSolic));
             $instruccion2->execute(array($idVent));
 
@@ -521,7 +487,7 @@ class User
         }
     }
 
-    //Para renta
+    //Para RENTA
 
     public function consultRenta(){
         try {
@@ -554,7 +520,6 @@ class User
             $instruccion->execute(array($idSolic, $dateActual, $timeActual, $cantDias, $price));
             $instruccion2->execute(array($state, $idSolic));
 
-
             $_SESSION['insertVent'] = "La renta se ha insertado correctamente.";
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
@@ -577,11 +542,9 @@ class User
             $idSolic = $v['idSolicitud'];
 
             $sql1 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
-            $instruccion1 = $this->db->prepare($sql1);
-
             $sql2 = "DELETE FROM `renta` WHERE `idRenta` = ?";
+            $instruccion1 = $this->db->prepare($sql1);
             $instruccion2 = $this->db->prepare($sql2);
-
             $instruccion1->execute(array($state, $idSolic));
             $instruccion2->execute(array($idRent));
 
@@ -590,14 +553,13 @@ class User
         }
         catch (PDOException $ex) {
             $_SESSION['deleteRent'] = "El artista no se ha eliminado correctamente.";            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
     }
 
-    //Para cliente
+    //PARA CLIENTE
 
-    //Para solicitudes del cliente
+    //Para SOLICITUDES del cliente
     public function consultSolicitud(){
         try {
             $user = $_SESSION['loginuser'];
@@ -636,8 +598,7 @@ class User
             $instruccion = $this->db->prepare($sql1);
             $instruccion->execute(array($idUser, $dateActual, $asuntoS, $descS, $estado));
 
-            $_SESSION['insertSolic'] = "La solicitud se ha dado de alta correctamente.";
-            
+            $_SESSION['insertSolic'] = "La solicitud se ha dado de alta correctamente.";           
             header('Location: ../UserClient/ClientSolic.php');  
         }
         catch (PDOException $ex) {

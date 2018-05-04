@@ -6,9 +6,9 @@ $consult = new User("localhost", "", "dbcirculomusical", "root", "");
 
 $consultP = $consult->consultProduct();
 
-$consultIDP =$consult->getIDProduct();
+$consultIDP =$consult->consultProduct();
 
-$consultIDPR =$consult->getIDProductR();
+$consultIDPR =$consult->consultProduct();
 
 $consultI = $consult->consultInvent();
 

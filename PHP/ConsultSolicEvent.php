@@ -8,12 +8,12 @@ $consultSE = $consult->consultSolicEvent();
 
 $consultSE1 = $consult->consultSolicEvent();
 
-$consultIDA = $consult->getIDArtist();
+$consultIDA = $consult->consultArtist();
 
 $consultA =  $consult->consultArtist();
 
 $consultE = $consult->consultEvent();
 
-$consultIDE = $consult->getIDEvent();
+$consultIDE = $consult->consultEvent();
 
 ?>
