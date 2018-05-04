@@ -53,13 +53,13 @@
           <li class="nav-item ">
             <a class="nav-link" href="../UserAdmin/AdminInvent.php">ADMIN Inventario</a>
           </li>
-          <li class="nav-item active font-weight-bold">
+          <li class="nav-item ">
             <a class="nav-link" href="../UserAdmin/AdminEvents.php">ADMIN Eventos</a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="../UserAdmin/AdminRenta.php">ADMIN Renta Productos</a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active font-weight-bold">
             <a class="nav-link" href="../UserAdmin/AdminVenta.php">ADMIN Venta Productos</a>
           </li>
           <li class="nav-item ">
@@ -107,33 +107,13 @@
         } 
       ?>
       </select>
-      <label for="inputUser" class="sr-only">Nombre Venta</label>
-      <input type="time" id="nombreVenta" name="nombreVenta" class="form-control" placeholder="Nombre de Vent" required autofocus>
-      <label for="inputUser" class="sr-only">Fecha Evento</label>
-      <input type="date" class="form-control" name="fechaEve" value="" placeholder="Fecha Evento" required>
-      <label for="inputUser" class="sr-only">Locación</label>
-      <input type="text" id="locacionEve" name="locacionEve" class="form-control" placeholder="Locación" required autofocus>
-      <label for="inputUser" class="sr-only">ID Artista</label>
-      <select id="inputUser" name="idArt" class="form-control" required autofocus>
-        <?php
-        while($d = $consultIDA->fetch(PDO::FETCH_ASSOC))
-        {
-          echo'<option value='.$d['idArtista'].'>'.$d['idArtista'] .' </option>';
-        } 
-      ?>
-      </select>
-      <label for="inputUser" class="sr-only">Numero Entradas</label>
-      <input type="number" placeholder="0" min="0" id="numEntradas" name="numEntradas" class="form-control" required>
-      <label for="inputUser" class="sr-only">Precio Entrada</label>
-      <input type="number" placeholder="0.0" step="0.01" min="0" id="precioEntrada" name="precioEntrada" class="form-control" required>
-
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['insertEve']))
                   echo $_SESSION['insertEve'];
           ?>
       </p>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Dar Alta</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Venta</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
