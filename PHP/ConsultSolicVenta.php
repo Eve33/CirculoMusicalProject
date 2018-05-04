@@ -8,4 +8,6 @@ $consultSV = $consult->consultSolicVenta();
 
 $consultSV1 = $consult->consultSolicVenta();
 
+$consultV = $consult->consultVenta();
+
 ?>
