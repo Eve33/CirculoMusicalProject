@@ -13,7 +13,7 @@ class User
         }
         catch(PDOException $ex)
         {
-            echo 'Error en conexión con la conecion a la BD' , $ex.getMessage();
+            echo 'Error en conexión con la conecion a la BD' . $ex.getMessage();
             die();
         }         
     }
@@ -42,7 +42,7 @@ class User
             header('Location: ../SignUp/SignUp.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['signinuser'] = "El usuario no se ha registrado." + $ex;            
+            $_SESSION['signinuser'] = "El usuario no se ha registrado." .  $ex.getMessage();            
             header('Location: ../SignUp/SignUp.php');  
         }
     }
@@ -64,7 +64,7 @@ class User
             }
        }catch(PDOException $e)
        {
-            $_SESSION['loginuser'] = "Error en verificar usuario.".$e->getMessage();
+            $_SESSION['loginuser'] = "Error en verificar usuario.". $e->getMessage();
             header('Location: ../LogIn/LogIn.php');  
        } 
     }
@@ -110,7 +110,7 @@ class User
             header('Location: ../UserAdmin/AdminArtist.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['insertArtist'] = "El artista no se ha dado de alta correctamente." + $ex;            
+            $_SESSION['insertArtist'] = "El artista no se ha dado de alta correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminArtist.php');  
         }
     }
@@ -125,7 +125,7 @@ class User
             header('Location: ../UserAdmin/AdminArtist.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['deleteArtist'] = "El artista no se ha dado de baja correctamente." + $ex;            
+            $_SESSION['deleteArtist'] = "El artista no se ha dado de baja correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminArtist.php');  
         }
     }
@@ -156,7 +156,7 @@ class User
             header('Location: ../UserAdmin/AdminProducts.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['insertProd'] = "El producto no se ha dado de alta correctamente.";            
+            $_SESSION['insertProd'] = "El producto no se ha dado de alta correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminProducts.php');  
         }
     }
@@ -172,7 +172,7 @@ class User
             header('Location: ../UserAdmin/AdminProducts.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['deleteProd'] = "El producto no se ha dado de baja correctamente.";            
+            $_SESSION['deleteProd'] = "El producto no se ha dado de baja correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminProducts.php');  
         }
     }
@@ -223,7 +223,7 @@ class User
             header('Location: ../UserAdmin/AdminInvent.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['insertInvent'] = "El producto no se ha añadido a tu inventario correctamente." .$ex;            
+            $_SESSION['insertInvent'] = "El producto no se ha añadido a tu inventario correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminInvent.php');  
         }
     }
@@ -286,7 +286,7 @@ class User
             header('Location: ../Contact/Contact.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['comentsPub'] = "Error No se ha enviado tu comentario." + $ex;   
+            $_SESSION['comentsPub'] = "Error No se ha enviado tu comentario." . $ex.getMessage();   
             header('Location: ../Contact/Contact.php');  
         }
     }
@@ -382,12 +382,12 @@ class User
                 $instruccion->execute(array($idSolic, $nombreEve, $fecha, $locacion, $nEntr, $pEntr, $idArt));
                 $instruccion2->execute(array($state, $idSolic));
 
-                $_SESSION['insertEve'] = "El evento se ha dado de alta correctamente.".$ex;
+                $_SESSION['insertEve'] = "El evento se ha dado de alta correctamente.";
                 header('Location: ../UserAdmin/AdminEvents.php');  
             }
         }
         catch (PDOException $ex) {
-            $_SESSION['insertEve'] = "El evento no se ha dado de alta correctamente.".$ex;            
+            $_SESSION['insertEve'] = "El evento no se ha dado de alta correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminEvents.php');  
         }
     }
@@ -413,7 +413,7 @@ class User
             header('Location: ../UserAdmin/AdminEvents.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['deleteEve'] = "El evento no se ha dado de baja correctamente.";            
+            $_SESSION['deleteEve'] = "El evento no se ha dado de baja correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminEvents.php');  
         }
     }
@@ -454,7 +454,7 @@ class User
             header('Location: ../UserAdmin/AdminVenta.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['insertVent'] = "La venta no se ha insertado correctamente.";            
+            $_SESSION['insertVent'] = "La venta no se ha insertado correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminVenta.php');  
         }
     }
@@ -482,7 +482,7 @@ class User
             header('Location: ../UserAdmin/AdminVenta.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['deleteVent'] = "El evento no se ha dado de baja correctamente.";            
+            $_SESSION['deleteVent'] = "El evento no se ha dado de baja correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminVenta.php');  
         }
     }
@@ -524,7 +524,7 @@ class User
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['insertVent'] = "La renta no se ha insertado correctamente.";            
+            $_SESSION['insertVent'] = "La renta no se ha insertado correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
     }
@@ -552,7 +552,7 @@ class User
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['deleteRent'] = "El artista no se ha eliminado correctamente.";            
+            $_SESSION['deleteRent'] = "El artista no se ha eliminado correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
     }
@@ -602,9 +602,8 @@ class User
             header('Location: ../UserClient/ClientSolic.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['insertSolic'] = "La solicitud no se ha dado de alta correctamente.".$ex;            
+            $_SESSION['insertSolic'] = "La solicitud no se ha dado de alta correctamente." . $ex.getMessage();            
             header('Location: ../UserClient/ClientSolic.php');  
         }
     }
 }
-
