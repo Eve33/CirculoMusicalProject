@@ -1,9 +1,17 @@
 <?php
-session_start();
-    if(isset($_SESSION['loginuser'])){
-        header('Location: ../LogIn/LogIn.php');
-    }
-?>
+ session_start();
+  if(isset($_SESSION['loginuser']))
+  {
+      if($_SESSION['logintype']=='Admin')
+      {
+          header('Location: ../UserAdmin/AdminArtist.php');
+      }
+      else{
+        header('Location: ../UserClient/ClientSolic.php');
+      }
+  }
+ ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -33,7 +41,9 @@ session_start();
       <p class="messageAlert">
         <?php
             if(isset($_SESSION['loginuser']))
-            echo $_SESSION['loginuser']; 
+            {
+              echo $_SESSION['loginuser']; 
+            }
         ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>

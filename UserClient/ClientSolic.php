@@ -74,7 +74,7 @@
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar Solicitud</button>
-      <p class="mt-5 mb-3 text-muted">El tiempo de respuesta de nuestra empresa para validar tu solicitud es de maximo 36hrs. Si no has recibido un correo o una llamada para confirmar tu solicitud, <a href="../Contact/Contact.html">Contáctanos</a> &copy; 2018-2019</p>
+      <p class="mt-5 mb-3 text-muted">El tiempo de respuesta de nuestra empresa para validar tu solicitud es de maximo 36hrs. Si no has recibido un correo o una llamada para confirmar tu solicitud, <a href="../Contact/Contact.php">Contáctanos</a> &copy; 2018-2019</p>
     </form>
 
     <div class="table-consult">

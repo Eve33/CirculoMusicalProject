@@ -1,6 +1,6 @@
 <?php
-session_start();
-
+ session_start();
+ 
 class User
 {
     private $db;
@@ -22,22 +22,21 @@ class User
 
     public function signUp($nombre, $apellidoPat, $apellidoMat, $direccion, $fechaN, $telefono, $email, $usuario, $password){
         try {  
+
+            $tipoUsuario = '2';
+
             $sql = "INSERT INTO `info_usuario`(`nombre`, `apellidoPat`, `apellidoMat`, `direccion`, `fechaNac`, `telefono`, `email`) VALUES (?,?,?,?,?,?,?)";
             $sql1 = "SELECT `idInfoUsuario` FROM `info_usuario` WHERE `telefono`= $telefono";
-            $sql2 = "INSERT INTO `usuario`(`usuario`, `password`, `idInfoUsuario`) VALUES (?,?,?)";
+            $sql2 = "INSERT INTO `usuario`(`usuario`, `password`,`tipoUsuario` , `idInfoUsuario`) VALUES (?,?,?,?)";
 
             $instruccion = $this->db->prepare($sql);
-            $instruccion->execute(array($nombre, $apellidoPat, $apellidoMat, $direccion, $fechaN, $telefono, $email));
-
             $result=$this->db->prepare($sql1);
-            $result->execute(array($email));
-
-            $idInfoUsuario = $result->fetch(PDO::FETCH_ASSOC)['idInfoUsuario'];
-
-            echo $idInfoUsuario;
-
             $instruccion2 = $this->db->prepare($sql2);
-            $instruccion2->execute(array($usuario, $password, $idInfoUsuario));
+
+            $instruccion->execute(array($nombre, $apellidoPat, $apellidoMat, $direccion, $fechaN, $telefono, $email));
+            $result->execute(array($email));
+            $idInfoUsuario = $result->fetch(PDO::FETCH_ASSOC)['idInfoUsuario'];
+            $instruccion2->execute(array($usuario, $password, $tipoUsuario, $idInfoUsuario));
 
             $_SESSION['signinuser'] = "El usuario se ha registrado correctamente.";
             header('Location: ../SignUp/SignUp.php');  
@@ -69,6 +68,20 @@ class User
             $_SESSION['loginuser'] = "Error en verificar usuario.".$e->getMessage();
             header('Location: ../LogIn/LogIn.php');  
        } 
+    }
+
+    public function getTypeUser($user)
+    {
+        try{
+            $sql = $this->db->prepare("SELECT * FROM `usuario` WHERE `usuario` = ?");
+            $sql->execute(array($user));
+            $typeUser = $sql->fetch(PDO::FETCH_ASSOC)['idUsuario'];
+            return $typeUser;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
     }
 
     //Para Administrador

@@ -1,3 +1,17 @@
+<?php
+ session_start();
+  if(isset($_SESSION['loginuser']))
+  {
+      if($_SESSION['logintype']=='Admin')
+      {
+          header('Location: ../UserAdmin/AdminArtist.php');
+      }
+      else{
+        header('Location: ../UserClient/ClientSolic.php');
+      }
+  }
+ ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -45,8 +59,10 @@
       </div>
       <p class="messageAlert">
           <?php
-              if(isset($_SESSION['signinuser']))
+              if(isset($_SESSION['signinuser'])){
                   echo $_SESSION['signinuser'];
+                  unset($_SESSION['signinuser']);
+              }            
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
