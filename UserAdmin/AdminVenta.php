@@ -93,7 +93,7 @@
     </div>
 
 
-  <form class="form-signin" action="../PHP/InsertEvent.php" method="POST">
+  <form class="form-signin" action="../PHP/InsertVenta.php" method="POST">
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
@@ -117,7 +117,7 @@
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
-    <form class="form-signin" action="../PHP/InsertEvent.php" method="POST">
+    <form class="form-signin" action="../PHP/DeleteVenta.php" method="POST">
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>

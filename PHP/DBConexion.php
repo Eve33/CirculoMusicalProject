@@ -495,6 +495,45 @@ class User
         } 
     }
 
+    public function insertVenta($idSolic)
+    {
+        try{
+            $sql = "INSERT INTO `venta`(`idSolicitud`, `fecha`, `hora`, `total`) VALUES (?,?,?,?)";
+
+            $timeActual = date('H:i:s');
+            $dateActual = date('Y-m-d');
+            $price = 0.00;
+
+            $instruccion = $this->db->prepare($sql);
+            $instruccion->execute(array($idSolic, $dateActual, $timeActual, $price));
+
+            $_SESSION['insertVent'] = "La venta se ha insertado correctamente.";
+            header('Location: ../UserAdmin/AdminVenta.php');  
+        }
+        catch (PDOException $ex) {
+            $_SESSION['insertVent'] = "La venta no se ha insertado correctamente.";            
+            echo "Error en el registro de usuario. " . $ex->getMessage();
+            header('Location: ../UserAdmin/AdminVenta.php');  
+        }
+    }
+
+    public function deleteVenta($idVent)
+    {
+        try {  
+            $sql = "DELETE FROM `venta` WHERE `idVenta` = ?";
+
+            $instruccion = $this->db->prepare($sql);
+            $instruccion->execute(array($idArt));
+
+            $_SESSION['deleteVent'] = "La venta se ha eliminado correctamente.";
+            header('Location: ../UserAdmin/AdminVenta.php');  
+        }
+        catch (PDOException $ex) {
+            $_SESSION['deleteVent'] = "El artista no se ha eliminado correctamente.";            
+            echo "Error en el registro de usuario. " . $ex->getMessage();
+            header('Location: ../UserAdmin/AdminVenta.php');  
+        }
+    }
 
 
 
