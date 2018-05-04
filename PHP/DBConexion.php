@@ -485,9 +485,9 @@ class User
      public function consultVenta(){
         try {
             $sql = "SELECT * FROM `venta`";
-            $invents = $this->db->prepare($sql);  
-            $invents->execute();
-            $table = $invents;
+            $vents = $this->db->prepare($sql);  
+            $vents->execute();
+            $table = $vents;
             return $table;
         }
         catch (PDOException $ex) {
@@ -512,7 +512,6 @@ class User
         }
         catch (PDOException $ex) {
             $_SESSION['insertVent'] = "La venta no se ha insertado correctamente.";            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
             header('Location: ../UserAdmin/AdminVenta.php');  
         }
     }
@@ -529,12 +528,66 @@ class User
             header('Location: ../UserAdmin/AdminVenta.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['deleteVent'] = "El artista no se ha eliminado correctamente.";            
-            echo "Error en el registro de usuario. " . $ex->getMessage();
+            $_SESSION['deleteVent'] = "La venta no se ha eliminado correctamente.";            
             header('Location: ../UserAdmin/AdminVenta.php');  
         }
     }
 
+    //Para renta
+
+    public function consultRenta(){
+        try {
+            $sql = "SELECT * FROM `renta`";
+            $rents = $this->db->prepare($sql);  
+            $rents->execute();
+            $table = $rents;
+            return $table;
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener la tabla de Renta." . $ex->getMessage();
+        } 
+    }
+
+    public function insertRenta($idSolic, $cantDias)
+    {
+        try{
+            $sql = "INSERT INTO `renta`(`idSolicitud`, `fecha`, `hora`, `cantDias`,`total`) VALUES (?,?,?,?,?)";
+
+            $timeActual = date('H:i:s');
+            $dateActual = date('Y-m-d');
+            $price = 0.00;
+
+            $instruccion = $this->db->prepare($sql);
+            $instruccion->execute(array($idSolic, $dateActual, $timeActual, $cantDias, $price));
+
+            $_SESSION['insertVent'] = "La renta se ha insertado correctamente.";
+            header('Location: ../UserAdmin/AdminRenta.php');  
+        }
+        catch (PDOException $ex) {
+            $_SESSION['insertVent'] = "La renta no se ha insertado correctamente.";            
+            header('Location: ../UserAdmin/AdminRenta.php');  
+        }
+    }
+
+    public function deleteRenta($idVent)
+    {
+        try {  
+            $sql = "DELETE FROM `renta` WHERE `idRenta` = ?";
+
+            $instruccion = $this->db->prepare($sql);
+            $instruccion->execute(array($idArt));
+
+            $_SESSION['deleteRent'] = "La renta se ha eliminado correctamente.";
+            header('Location: ../UserAdmin/AdminRenta.php');  
+        }
+        catch (PDOException $ex) {
+            $_SESSION['deleteRent'] = "El artista no se ha eliminado correctamente.";            
+            echo "Error en el registro de usuario. " . $ex->getMessage();
+            header('Location: ../UserAdmin/AdminRenta.php');  
+        }
+    }
+
+    
 
 
 

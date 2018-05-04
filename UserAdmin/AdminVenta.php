@@ -93,7 +93,7 @@
     </div>
 
 
-  <form class="form-signin" action="../PHP/InsertVenta.php" method="POST">
+  <form class="form-signin" action="../PHP/InsertVent.php" method="POST">
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
@@ -117,15 +117,34 @@
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
-    <form class="form-signin" action="../PHP/DeleteVenta.php" method="POST">
+    <div class="table-consult">
+      <h3>Ventas</h3>
+      <p>Esta tabla te permitirá administrar a tus ventas.</p>
+      <div class="row">
+        <div class="col-1 headerTableA">ID Venta</div>
+        <div class="col-1 headerTableA">ID Solicitud</div>
+        <div class="col-1 headerTableA">Fecha</div>
+        <div class="col-1 headerTableA">Hora</div>
+        <div class="col-1 headerTableA">Total</div>
+      </div>
+      <?php
+        while($v = $consultV->fetch(PDO::FETCH_ASSOC))
+        {
+          echo '<div class="row"> <div class="col-1">'.$v['idVenta'].'</div> <div class="col-1">'.$v['idSolicitud'].'</div> <div class="col-1">'.$v['fecha'].'</div> <div class="col-1">'.$v['hora'].'</div> <div class="col-1">'.$e['total'].'</div> <div class="col-1">'.'</div> </div>';
+        } 
+      ?>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+    </div>
+
+    <form class="form-signin" action="../PHP/DeleteVent.php" method="POST">
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Baja de Venta</h1>
       <label for="inputUser" class="sr-only">ID Venta</label>
-      <select id="inputUser" name="idSolic" class="form-control" required autofocus>
+      <select id="inputUser" name="idVent" class="form-control" required autofocus>
         <?php
-        while($d = $consultV->fetch(PDO::FETCH_ASSOC))
+        while($d = $consultV1->fetch(PDO::FETCH_ASSOC))
         {
           echo'<option value='.$d['idVenta'].'>'.$d['idVenta'] .' </option>';
         } 
