@@ -8,6 +8,8 @@ $consultSR = $consult->consultSolicRenta();
 
 $consultSR1 = $consult->consultSolicRenta();
 
+$consultR0 = $consult->consultRenta();
+
 $consultR = $consult->consultRenta();
 
 $consultR1 = $consult->consultRenta();

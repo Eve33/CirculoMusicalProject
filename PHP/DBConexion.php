@@ -520,12 +520,11 @@ class User
         } 
     }
 
-    public function insertRenta($idSolic, $cantDias)
-    {
+    public function insertRenta($idSolic, $cantDias) {
         try{
 
             $state = "Aprobado";
-            $state2 = 'En renta';
+            $state2 = 'En Renta';
 
             $sql = "INSERT INTO `renta`(`idSolicitud`, `fecha`, `hora`, `cantDias`, `estado`, `total`) VALUES (?,?,?,?,?,?)";    
             $sql2 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
@@ -548,8 +547,7 @@ class User
         }
     }
 
-    public function updateRenta($idRent, $cDias)
-    {
+    public function updateRenta($idRent, $cDias)  {
         try {  
             $state = "Modificado";
 
@@ -566,6 +564,33 @@ class User
             $instruccion2 = $this->db->prepare($sql2);
             $instruccion1->execute(array($state, $idSolic));
             $instruccion2->execute(array($cDias,$idRent));
+
+            $_SESSION['deleteRent'] = "La renta se ha modificado correctamente.";
+            header('Location: ../UserAdmin/AdminRenta.php');  
+        }
+        catch (PDOException $ex) {
+            $_SESSION['deleteRent'] = "La renta no se ha eliminado correctamente." . $ex.getMessage();            
+            header('Location: ../UserAdmin/AdminRenta.php');  
+        }
+    }
+
+    public function updateRentaEstado($idRent, $estado)  {
+        try {  
+            $state = "Modificado";
+
+            $sql = "SELECT `idSolicitud` FROM `renta` WHERE `idRenta` = ?";
+            $solic = $this->db->prepare($sql);  
+            $solic->execute(array($idRent));
+            $v = $solic->fetch(PDO::FETCH_ASSOC);
+
+            $idSolic = $v['idSolicitud'];
+
+            $sql1 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
+            $sql2 = "UPDATE `renta` SET `estado`= ? WHERE `idRenta` = ?";
+            $instruccion1 = $this->db->prepare($sql1);
+            $instruccion2 = $this->db->prepare($sql2);
+            $instruccion1->execute(array($state, $idSolic));
+            $instruccion2->execute(array($estado,$idRent));
 
             $_SESSION['deleteRent'] = "La renta se ha modificado correctamente.";
             header('Location: ../UserAdmin/AdminRenta.php');  
@@ -635,6 +660,8 @@ class User
             header('Location: ../UserAdmin/AdminRenta.php'); 
         } 
     }
+
+    //PARA VENTA
 
     //PARA CLIENTE
 

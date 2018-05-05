@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2018 a las 17:45:36
+-- Tiempo de generación: 06-05-2018 a las 00:11:34
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -57,6 +57,13 @@ CREATE TABLE `comentpub` (
   `mensaje` varchar(300) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `comentpub`
+--
+
+INSERT INTO `comentpub` (`idComentPub`, `nombre`, `email`, `telefono`, `mensaje`) VALUES
+(1, 'Eddie Sanchez', 'eddcsanchez@gmail.com', '4446587980', 'Me encanta su pagina jajajaja.');
+
 -- --------------------------------------------------------
 
 --
@@ -105,6 +112,13 @@ CREATE TABLE `evento` (
   `precioTotal` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `evento`
+--
+
+INSERT INTO `evento` (`idEvento`, `idSolicitud`, `nombre`, `fecha`, `locacion`, `idArtista`, `numeroEntradas`, `precioEntrada`, `precioTotal`) VALUES
+(3, 4, 'Ariana Grande Tout', '2018-05-05', 'CD MX', 1, 1000, 100, 100000);
+
 -- --------------------------------------------------------
 
 --
@@ -143,6 +157,13 @@ CREATE TABLE `inventario` (
   `horaEntrada` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`idProducto`, `cantidadExistencia`, `fechaEntrada`, `horaEntrada`) VALUES
+(1, 5, '2018-05-05', '22:51:09');
+
 -- --------------------------------------------------------
 
 --
@@ -159,6 +180,14 @@ CREATE TABLE `producto` (
   `precioRenta` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `nombre`, `descripcion`, `categoria`, `precioUnitario`, `precioVenta`, `precioRenta`) VALUES
+(1, 'Celular', 'Celular Nuevo', 'Iluminacion', 23213.2, 1232.22, 231312),
+(2, 'SCSAS', 'JKSADS', 'Estructuras', 13424, 413, 3242430);
+
 -- --------------------------------------------------------
 
 --
@@ -169,9 +198,18 @@ CREATE TABLE `renta` (
   `idRenta` int(11) NOT NULL,
   `idSolicitud` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `hora` date NOT NULL,
+  `hora` time NOT NULL,
+  `cantDias` int(11) NOT NULL,
+  `estado` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `renta`
+--
+
+INSERT INTO `renta` (`idRenta`, `idSolicitud`, `fecha`, `hora`, `cantDias`, `estado`, `total`) VALUES
+(1, 3, '2018-05-05', '00:00:00', 4, 'Entregado', 0);
 
 -- --------------------------------------------------------
 
@@ -187,6 +225,16 @@ CREATE TABLE `solicitud` (
   `descripcion` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
   `estado` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `solicitud`
+--
+
+INSERT INTO `solicitud` (`idSolicitud`, `idUsuario`, `fecha`, `asunto`, `descripcion`, `estado`) VALUES
+(1, 2, '2018-05-04', 'Venta', 'Quiero que me venda una maquina de humo.', 'Rechazado'),
+(2, 2, '2018-05-05', 'Evento', 'hola', 'Cancelado'),
+(3, 2, '2018-05-05', 'Renta', 'hola', 'Modificado'),
+(4, 2, '2018-05-05', 'Evento', 'Ariana Grande Tout', 'Aprobado');
 
 -- --------------------------------------------------------
 
@@ -329,13 +377,13 @@ ALTER TABLE `artista`
 -- AUTO_INCREMENT de la tabla `comentpub`
 --
 ALTER TABLE `comentpub`
-  MODIFY `idComentPub` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idComentPub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detallerenta`
 --
 ALTER TABLE `detallerenta`
-  MODIFY `idDetalleRenta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDetalleRenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleventa`
@@ -347,7 +395,7 @@ ALTER TABLE `detalleventa`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `info_usuario`
@@ -359,19 +407,19 @@ ALTER TABLE `info_usuario`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `renta`
 --
 ALTER TABLE `renta`
-  MODIFY `idRenta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `idSolicitud` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

@@ -170,9 +170,46 @@
               }            
           ?>
       </p>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Recepción de Renta</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+    </form>
+
+    <form class="form-signin" action="../PHP/UpdateRentEstado.php" method="POST">
+      <a href="../Cover/Cover.html">
+        <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
+      </a>
+      <h1 class="h3 mb-3 font-weight-normal">Modificar Renta</h1>
+      <h6>ID Renta</h6>
+      <select name="idRent" class="form-control" required autofocus>
+        <?php
+        while($d = $consultR0->fetch(PDO::FETCH_ASSOC))
+        {
+          echo'<option value='.$d['idRenta'].'>'.$d['idRenta'] .' </option>';
+        } 
+      ?>
+      </select>
+      <h6>Asunto</h6>
+      <select name="estadoRent" class="form-control" required autofocus>
+        <option value="En Renta">En Renta</option>
+        <option value="Entregado">Entregado</option>
+      </select>      
+      <p class="messageAlert">
+        <?php
+              if(isset($_SESSION['updateRentE']))
+              {
+                echo $_SESSION['updateRentE'];
+                unset($_SESSION['updateRentE']);
+              }            
+          ?>
+      </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Modificar Renta</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
+
+
+
+
+
 
     <form class="form-signin" action="../PHP/InsertDR.php" method="POST">
       <a href="../Cover/Cover.html">
