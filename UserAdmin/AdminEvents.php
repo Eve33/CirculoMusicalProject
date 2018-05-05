@@ -147,12 +147,13 @@
         <div class="col-1 headerTableA">Locación</div>
         <div class="col-1 headerTableA"># Entradas</div>
         <div class="col-1 headerTableA">Precio Entrada</div>
+        <div class="col-1 headerTableA">Precio Final</div>
         <div class="col-1 headerTableA">ID Artista</div>
       </div>
       <?php
         while($e = $consultE->fetch(PDO::FETCH_ASSOC))
         {
-          echo '<div class="row"> <div class="col-1">'.$e['idEvento'].'</div> <div class="col-1">'.$e['idSolicitud'].'</div> <div class="col-1">'.$e['nombre'].'</div> <div class="col-1">'.$e['fecha'].'</div> <div class="col-1">'.$e['locacion'].'</div> <div class="col-1">'.$e['numeroEntradas'].'</div> <div class="col-1">'.$e['precioEntrada'].'</div> <div class="col-1">'.$e['idArtista'].'</div> </div>';
+          echo '<div class="row"> <div class="col-1">'.$e['idEvento'].'</div> <div class="col-1">'.$e['idSolicitud'].'</div> <div class="col-1">'.$e['nombre'].'</div> <div class="col-1">'.$e['fecha'].'</div> <div class="col-1">'.$e['locacion'].'</div> <div class="col-1">'.$e['numeroEntradas'].'</div> <div class="col-1">'.$e['precioEntrada'].'</div> <div class="col-1">'.$e['idArtista'].'</div> <div class="col-1">'.$e['precioTotal'].'</div> </div>';
         } 
       ?>
         <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>

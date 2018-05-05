@@ -16,7 +16,7 @@ $consultR2 = $consult->consultRenta();
 
 $consultIDR = $consult->consultRenta();
 
-$consultIDP = $consult->consultProduct();
+$consultIDP = $consult->consultProdInvent();
 
 $consultDR = $consult->consultDetalleRent();
 

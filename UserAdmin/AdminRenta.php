@@ -241,7 +241,7 @@
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Elimnar Detalle Venta</h1>
       <h6>ID Renta</h6>
-      <select name="idDR1" class="form-control" required autofocus>
+      <select name="idR" class="form-control" required autofocus>
         <?php
         while($r = $consultR2->fetch(PDO::FETCH_ASSOC))
         {
@@ -250,18 +250,25 @@
       ?>
       </select>
       <h6>ID Detalle Renta</h6>
-      <select name="idDR1" class="form-control" required autofocus>
+      <select name="idDR" class="form-control" required autofocus>
         <?php
         while($dv = $consultDR1->fetch(PDO::FETCH_ASSOC))
         {
           echo'<option value='.$dv['idDetalleRenta'].'>'.$dv['idDetalleRenta'] .' </option>';
         } 
       ?>
-      </select>
+      </select>   
+      <p class="messageAlert">
+        <?php
+              if(isset($_SESSION['deleteDR']))
+              {
+                echo $_SESSION['deleteDR'];
+                unset($_SESSION['deleteDR']);
+              }            
+          ?>
+      </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar DR</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
-
-
       </form>
 
 

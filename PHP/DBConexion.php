@@ -192,6 +192,20 @@ class User
         } 
     }
 
+    
+    public function consultProdInvent(){
+        try {
+            $sql = "SELECT `idProducto` FROM `inventario`";
+            $invents = $this->db->prepare($sql);  
+            $invents->execute();
+            $table = $invents;
+            return $table;
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener los productos de inventario." . $ex->getMessage();
+        } 
+    }
+
     public function insertInvent($idPInv, $cPInv){
         try {  
 
@@ -588,12 +602,12 @@ class User
             if(intval($cantPI)>=$cant)
             {
                 $subtotal = 0.00;
-                $sql = "INSERT INTO `detallerenta`(`idRenta`, `idProducto`, `cantidad`, `descuento`, `subtotal`) VALUES (?,?,?,?,?)";
-                $instruccion =$this->db->prepare($sql); 
+                $sql2 = "INSERT INTO `detallerenta`(`idRenta`, `idProducto`, `cantidad`, `descuento`, `subtotal`) VALUES (?,?,?,?,?)";
+                $instruccion =$this->db->prepare($sql2); 
                 $instruccion->execute(array($idRent, $idProd, $cant, $desc, $subtotal));
 
                 $_SESSION['insertDR'] = "El detalle de renta se ha insertado correctamente.";
-                header('Location: ../UserAdmin/AdminRenta.php'); 
+                header('Location: ../UserAdmin/AdminRenta.php');                
             }
             else{
                 $_SESSION['insertDR'] = "Error, la cantidad excede de existencias del producto.";
@@ -609,14 +623,16 @@ class User
     public function deleteDR($idRent, $idDR)
     {
         try {
-            $sql = "SELECT * FROM `detallerenta` ORDER BY `idRenta`";
-            $detrents = $this->db->prepare($sql);  
-            $detrents->execute();
-            $table = $detrents;
-            return $table;
+            $sql = "DELETE FROM `detallerenta` WHERE `idRenta` = ? AND `idDetalleRenta` = ?";
+            $detr = $this->db->prepare($sql);  
+            $detr->execute(array($idRent, $idDR));
+
+            $_SESSION['deleteDR'] = "Se ha eliminado correctamente el detalle de venta.";
+            header('Location: ../UserAdmin/AdminRenta.php'); 
         }
         catch (PDOException $ex) {
-            echo "Error al eliminar el detalle de renta." . $ex->getMessage();
+            $_SESSION['deleteDR'] = "Error no se ha eliminado el detalle de renta." . $ex.getMessage();
+            header('Location: ../UserAdmin/AdminRenta.php'); 
         } 
     }
 
