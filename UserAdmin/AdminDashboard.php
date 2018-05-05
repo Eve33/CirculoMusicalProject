@@ -14,9 +14,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="../../../../favicon.ico">
+  <link rel="icon" href="../resources/iconCM.png">
 
-  <title>Dashboard Template for Bootstrap</title>
+  <title>ADMIN REPORTS | CM</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

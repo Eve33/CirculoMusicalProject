@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../resources/iconCM.png">
 
-    <title>ADMIN VENTA | CM</title>
+    <title>ADMIN VENTS | CM</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -98,8 +98,8 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Alta de Venta</h1>
-      <label for="inputUser" class="sr-only">ID Solicitud</label>
-      <select id="inputUser" name="idSolic" class="form-control" required autofocus>
+      <h6>ID Solicitud</h6>
+      <select name="idSolic" class="form-control" required autofocus>
         <?php
         while($d = $consultSV1->fetch(PDO::FETCH_ASSOC))
         {
@@ -141,8 +141,8 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Baja de Venta</h1>
-      <label for="inputUser" class="sr-only">ID Venta</label>
-      <select id="inputUser" name="idVent" class="form-control" required autofocus>
+      <h6>ID Venta</h6>
+      <select name="idVent" class="form-control" required autofocus>
         <?php
         while($d = $consultV1->fetch(PDO::FETCH_ASSOC))
         {

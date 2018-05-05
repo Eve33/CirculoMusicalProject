@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../resources/iconCM.png">
 
-    <title>ADMIN ARTIST | CM</title>
+    <title>ADMIN EVENTS | CM</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -93,13 +93,13 @@
     </div>
 
 
-  <form class="form-signin" action="../PHP/InsertEvent.php" method="POST">
+    <form class="form-signin" action="../PHP/InsertEvent.php" method="POST">
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Alta de Eventos</h1>
-      <label for="inputUser" class="sr-only">ID Solicitud</label>
-      <select id="inputUser" name="idSolic" class="form-control" required autofocus>
+      <h6>ID Solicitud</h6>
+      <select name="idSolic" class="form-control" required autofocus>
         <?php
         while($d = $consultSE1->fetch(PDO::FETCH_ASSOC))
         {
@@ -107,14 +107,14 @@
         } 
       ?>
       </select>
-      <label for="inputUser" class="sr-only">Nombre Evento</label>
-      <input type="text" id="nombreEve" name="nombreEve" class="form-control" placeholder="Nombre de evento" required autofocus>
-      <label for="inputUser" class="sr-only">Fecha Evento</label>
+      <h6>Nombre de Evento</h6>
+      <input type="text" name="nombreEve" class="form-control" placeholder="Nombre de evento" required autofocus>
+      <h6>Fecha de Evento</h6>
       <input type="date" class="form-control" name="fechaEve" value="" placeholder="Fecha Evento" required>
-      <label for="inputUser" class="sr-only">Locación</label>
-      <input type="text" id="locacionEve" name="locacionEve" class="form-control" placeholder="Locación" required autofocus>
-      <label for="inputUser" class="sr-only">ID Artista</label>
-      <select id="inputUser" name="idArt" class="form-control" required autofocus>
+      <h6>Lugar/Locación</h6>
+      <input type="text" name="locacionEve" class="form-control" placeholder="Locación" required autofocus>
+      <h6>ID Artista</h6>
+      <select name="idArt" class="form-control" required autofocus>
         <?php
         while($d = $consultIDA->fetch(PDO::FETCH_ASSOC))
         {
@@ -122,11 +122,10 @@
         } 
       ?>
       </select>
-      <label for="inputUser" class="sr-only">Numero Entradas</label>
-      <input type="number" placeholder="0" min="0" id="numEntradas" name="numEntradas" class="form-control" required>
-      <label for="inputUser" class="sr-only">Precio Entrada</label>
+      <h6>Numero de entradas</h6>
+      <input type="number" placeholder="0" min="0" name="numEntradas" class="form-control" required>
+      <h6>Precio Entrada</h6>
       <input type="number" placeholder="0.0" step="0.01" min="0" id="precioEntrada" name="precioEntrada" class="form-control" required>
-
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['insertEve']))
@@ -180,28 +179,28 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Baja de Eventos</h1>
-      <label for="inputUser" class="sr-only">ID Eventos</label>
-      <select id="inputUser" name="idEve" class="form-control" required autofocus>
-        <?php
+      <h6>ID Evento </h6>
+        <select name="idEve" class="form-control" required autofocus>
+          <?php
         while($d = $consultIDE->fetch(PDO::FETCH_ASSOC))
         {
           echo'<option value='.$d['idEvento'].'>'.$d['idEvento'] .' </option>';
         } 
       ?>
-      </select>
-      <label for="inputUser" class="sr-only">Asunto</label>
-      <select id="inputUser" name="estadoBaja" class="form-control" required autofocus>
-        <option value="En Espera">En Espera</option>
-        <option value="Cancelado">Cancelado</option>
-      </select>
-      <p class="messageAlert">
-        <?php
+        </select>
+        <h6>Estado de Evento</h6>
+        <select name="estadoBaja" class="form-control" required autofocus>
+          <option value="En Espera">En Espera</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+        <p class="messageAlert">
+          <?php
               if(isset($_SESSION['deleteEve']))
                   echo $_SESSION['deleteEve'];
           ?>
-      </p>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Dar Baja</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Dar Baja</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
     <main role="main">

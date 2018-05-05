@@ -58,13 +58,13 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Crear Solicitud</h1>
-      <label for="inputUser" class="sr-only">Asunto</label>
-      <select id="inputUser" name="asuntoSolic" class="form-control" required autofocus>
+      <h6>Asunto</h6>
+      <select name="asuntoSolic" class="form-control" required autofocus>
         <option value="Evento">Evento</option>
         <option value="Renta">Renta</option>
         <option value="Venta">Venta</option>
       </select>
-      <label for="inputUser" class="sr-only">Descripción</label>
+      <h6>Descripción</h6>
       <textarea class="form-control" name="descSolic" rows="3" placeholder="Descripción Producto" required></textarea>
       <p class="messageAlert">
         <?php

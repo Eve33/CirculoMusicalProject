@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../resources/iconCM.png">
 
-    <title>ADMIN ARTIST | CM</title>
+    <title>ADMIN INVENT| CM</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -77,8 +77,9 @@
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
-      <h1 class="h3 mb-3 font-weight-normal">Agregar Producto a Inventario</h1>  
-      <select id="inputUser" name="idProdInv" class="form-control" required autofocus>
+      <h1 class="h3 mb-3 font-weight-normal">Agregar Producto a Inventario</h1>
+      <h6>ID Producto</h6>  
+      <select name="idProdInv" class="form-control" required autofocus>
         <?php
         while($d = $consultIDP->fetch(PDO::FETCH_ASSOC))
         {
@@ -86,7 +87,7 @@
         } 
       ?>
       </select>
-      <label for="inputUser" class="sr-only">Cantidad</label>
+      <h6>Cantidad</h6>
       <input type="number" placeholder="0" min="0" id="cantInv" name="cantProdInv" class="form-control" required>   
       <p class="messageAlert">
         <?php
@@ -144,8 +145,8 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Quitar productos de Inventario </h1>
-      <label for="inputUser" class="sr-only">ID Producto</label>
-      <select id="inputUser" name="idProdRest" class="form-control" required autofocus>
+      <h6>ID Producto</h6>
+      <select name="idProdRest" class="form-control" required autofocus>
         <?php
         while($pr = $consultIDPR->fetch(PDO::FETCH_ASSOC))
         {
@@ -153,7 +154,7 @@
         } 
       ?>
       </select>
-      <label for="inputUser" class="sr-only">Cantidad</label>
+      <h6>Cantidad</h6>
       <input type="number" placeholder="0" min="0" id="cantProdRest" name="cantProdRest" class="form-control" required>       
       <p class="messageAlert">
         <?php

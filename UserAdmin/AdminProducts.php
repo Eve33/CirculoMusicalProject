@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../resources/iconCM.png">
 
-    <title>ADMIN ARTIST | CM</title>
+    <title>ADMIN PRODUCTS | CM</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -78,12 +78,12 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Alta de Productos</h1>
-      <label for="inputUser" class="sr-only">Nombre Producto</label>
-      <input type="text" id="nombreArt" name="nombreProd" class="form-control" placeholder="Nombre Producto" required autofocus>
-      <label for="inputUser" class="sr-only">Descripción</label>
+      <h6>Nombre Producto</h6>
+      <input type="text" name="nombreProd" class="form-control" placeholder="Nombre Producto" required autofocus>
+      <h6>Descripción</h6>
       <textarea class="form-control" name="descProd" rows="3" placeholder="Descripción Producto" required></textarea>
-      <label for="inputUser" class="sr-only">Categoria</label>
-      <select id="inputUser" name="categoria" class="form-control" required autofocus>
+      <h6>Categoría</h6>
+      <select name="categoria" class="form-control" required autofocus>
         <option value="Estructuras">Estructuras</option>
         <option value="Iluminacion">Iluminación</option>
         <option value="Maquinas">Máquinas</option>
@@ -91,12 +91,12 @@
         <option value="Audio">Audio</option>
         <option value="Audio">Otras Estructuras</option>
       </select>
-      <label for="inputUser" class="sr-only">Precio Unitario</label>
-      <input type="number" placeholder="0.0" step="0.01" min="0" id="precioUni" name="precioUni" class="form-control" required>
-      <label for="inputUser" class="sr-only">Precio Venta</label>
-      <input type="number" placeholder="0.0" step="0.01" min="0" id="precioVen" name="precioVen" class="form-control" required>
-      <label for="inputUser" class="sr-only">Precio Renta</label>
-      <input type="number" placeholder="0.0" step="0.01" min="0" id="precioRen" name="precioRen" class="form-control" required>
+      <h6>Precio Unitario</h6>
+      <input type="number" placeholder="0.0" step="0.01" min="0" name="precioUni" class="form-control" required>
+      <h6>Precio Venta</h6>
+      <input type="number" placeholder="0.0" step="0.01" min="0" name="precioVen" class="form-control" required>
+      <h6>Precio Compra</h6>
+      <input type="number" placeholder="0.0" step="0.01" min="0" name="precioRen" class="form-control" required>
 
       <p class="messageAlert">
         <?php
@@ -136,8 +136,8 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Baja de Productos</h1>
-      <label for="inputUser" class="sr-only">ID Productos</label>
-      <select id="inputUser" name="idProd" class="form-control" required autofocus>
+      <h6>ID Producto</h6>
+      <select name="idProd" class="form-control" required autofocus>
         <?php
         while($d = $consultIDP->fetch(PDO::FETCH_ASSOC))
         {

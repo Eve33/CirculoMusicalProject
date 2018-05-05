@@ -78,14 +78,15 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Alta de Artistas</h1>
-      <label for="inputUser" class="sr-only">Nombre Artista</label>
-      <input type="text" id="nombreArt" name="nombreArt" class="form-control" placeholder="Nombre Artista" required autofocus>
-      <label for="inputUser" class="sr-only">Genero</label>
-      <input type="text" id="generoArt" name="generoArt" class="form-control" placeholder="Género Artista" required>
-      <label for="inputUser" class="sr-only">Precio</label>
-      <input type="number" placeholder="0.0" step="0.01" min="0" id="precioArt" name="precioArt" class="form-control" required>
-      <label for="inputUser" class="sr-only">Biografia</label>
+      <h6>Nombre de Artista</h6>
+      <input type="text" name="nombreArt" class="form-control" placeholder="Nombre Artista" required autofocus>
+      <h6>Genéro</h6>
+      <input type="text" name="generoArt" class="form-control" placeholder="Género Artista" required>
+      <h6>Biografía</h6>
       <textarea class="form-control" name="bioArt" rows="3" placeholder="Biografía Artista" required></textarea>
+      <h6>Precio Contrato</h6>
+      <input type="number" placeholder="0.0" step="0.01" min="0" id="precioArt" name="precioArt" class="form-control" required>
+
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['insertArtist']))
@@ -123,8 +124,8 @@
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
       <h1 class="h3 mb-3 font-weight-normal">Baja de Artistas</h1>
-      <label for="inputUser" class="sr-only">ID Artista</label>
-      <select id="inputUser" name="idArt" class="form-control" required autofocus>
+      <h6>ID Artista</h6>
+      <select name="idArt" class="form-control" required autofocus>
         <?php
         while($d = $consultIDA->fetch(PDO::FETCH_ASSOC))
         {
