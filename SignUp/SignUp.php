@@ -34,23 +34,23 @@
     <form class="form-signin" action="../PHP/SignUp.php" method="POST">
       <a href="../Cover/Cover.html"><img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72"></a>
       <h1 class="h3 mb-3 font-weight-normal">Regístrate en CM</h1>   
-      <label for="inputName" class="sr-only">Nombre</label>
+      <h6>Nombre</h6>
       <input type="text" class="form-control" name="nombre" value="" placeholder="Nombre"required autofocus>
-      <label for="inputName" class="sr-only">ApellidoPaterno</label>
+      <h6>Apelido Paterno</h6>
       <input type="text" class="form-control" name="apellidoPat" value="" placeholder="Apellido Paterno"required>
-      <label for="inputName" class="sr-only">ApellidoPaterno</label>
+      <h6>Apelido Materno</h6>
       <input type="text" class="form-control" name="apellidoMat" value="" placeholder="Apellido Materno"required>
-      <label for="inputAddress" class="sr-only">Direccion</label>
+      <h6>Dirección</h6>
       <input type="text" class="form-control" name="direccion" value="" placeholder="Dirección"required>
-      <label for="inputPhone" class="sr-only">Telefono</label>
+      <h6>Teléfono</h6>
       <input type="text" class="form-control" name="telefono" value="" placeholder="Teléfono"required>
-      <label for="inputDate" class="sr-only">Fecha Nacimiento</label>
+      <h6>Fecha Nacimiento</h6>
       <input type="date" class="form-control" name="fechaN" value="" placeholder="Fecha Nacimiento" required>
-      <label for="inputEmail" class="sr-only">Email</label>
+      <h6>Email</h6>
       <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required>
-      <label for="inputUser" class="sr-only">Usuario</label>
+      <h6>Usuario</h6>
       <input type="text" id="inputUser" class="form-control" name="usuario" placeholder="Usuario" required>
-      <label for="inputPassword" class="sr-only">Password</label>
+      <h6>Password</h6>
       <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
       <div class="checkbox mb-3">
         <label>

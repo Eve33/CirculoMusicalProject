@@ -69,8 +69,7 @@ class User
        } 
     }
 
-    public function getTypeUser($user)
-    {
+    public function getTypeUser($user) {
         try{
             $sql = $this->db->prepare("SELECT * FROM `usuario` WHERE `usuario` = ?");
             $sql->execute(array($user));
@@ -191,8 +190,7 @@ class User
             echo "Error al obtener la tabla de inventario." . $ex->getMessage();
         } 
     }
-
-    
+  
     public function consultProdInvent(){
         try {
             $sql = "SELECT `idProducto` FROM `inventario`";
@@ -505,6 +503,11 @@ class User
         }
     }
 
+
+
+
+
+
     //Para RENTA
 
     public function consultRenta(){
@@ -661,8 +664,6 @@ class User
         } 
     }
 
-    //PARA VENTA
-
     //PARA CLIENTE
 
     //Para SOLICITUDES del cliente
@@ -719,8 +720,7 @@ class User
         return $table;
     }
 
-    public function consultGEvePorMes($mes)
-    {
+    public function consultGEvePorMes($mes)  {
         try {
             $varCero = 0.0;
             $sql = "SELECT SUM(`precioTotal`) AS total FROM `evento` WHERE MONTH(`fecha`) = ?";
@@ -741,8 +741,7 @@ class User
         } 
     }
 
-    public function consultGVentPorMes($mes)
-    {
+    public function consultGVentPorMes($mes) {
         try {
             $varCero = 0.0;
 
@@ -764,8 +763,7 @@ class User
         } 
     }
 
-    public function consultGRentPorMes($mes)
-    {
+    public function consultGRentPorMes($mes)  {
         try {
             $varCero = 0.0;
 
@@ -787,7 +785,4 @@ class User
             echo "Error al obtener renta ." . $ex->getMessage();
         } 
     }
-
-
-
 }
