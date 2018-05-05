@@ -606,4 +606,82 @@ class User
             header('Location: ../UserClient/ClientSolic.php');  
         }
     }
+
+    public function getYear()
+    {
+        $table = date("Y");
+        return $table;
+    }
+
+    public function consultGEvePorMes($mes)
+    {
+        try {
+            $varCero = 0.0;
+            $sql = "SELECT SUM(`precioTotal`) AS total FROM `evento` WHERE MONTH(`fecha`) = ?";
+            $rents = $this->db->prepare($sql);  
+            $rents->execute(array($mes));
+            $table = $rents->fetch(PDO::FETCH_ASSOC);
+                        
+            if(is_null($table['total']))
+            {
+                return $varCero;             
+            }
+            else {
+                return floatval($table['total']);
+            }
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener ganancias ." . $ex->getMessage();
+        } 
+    }
+
+    public function consultGVentPorMes($mes)
+    {
+        try {
+            $varCero = 0.0;
+
+            $sql = "SELECT SUM(`total`) AS total  FROM `venta` WHERE MONTH(`fecha`) = ?";
+            $rents = $this->db->prepare($sql);  
+            $rents->execute(array($mes));
+            $table = $rents->fetch(PDO::FETCH_ASSOC);
+
+           if(is_null($table['total']))
+           {
+               return $varCero;             
+            }
+           else {
+               return floatval($table['total']);
+           }
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener venta ." . $ex->getMessage();
+        } 
+    }
+
+    public function consultGRentPorMes($mes)
+    {
+        try {
+            $varCero = 0.0;
+
+            $sql = "SELECT SUM(`total`) AS total FROM `renta` WHERE MONTH(`fecha`) = ?";
+            $rents = $this->db->prepare($sql);  
+            $rents->execute(array($mes));
+            $table = $rents->fetch(PDO::FETCH_ASSOC);
+
+           if(is_null($table['total']))
+           {
+               return $varCero;             
+            }
+           else {
+               return floatval($table['total']);
+           }
+
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener renta ." . $ex->getMessage();
+        } 
+    }
+
+
+
 }

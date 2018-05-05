@@ -1,3 +1,11 @@
+<?php
+    include '../PHP/ConsultGanancias.php';
+
+    if(!isset($_SESSION['loginuser'])){
+        header('Location: ../LogIn/LogIn.php');
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -63,13 +71,87 @@
   </nav>
 
   <main role="main" class="col-md-9 m-sm-auto col-lg-10 px-4 py-4">
-    <h1 class="h2">Ganancias del año</h1>
+    <h1 class="h2">Ganancias del año <?php echo $year ?></h1>
     <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
   </main>
 
-  <form class="form-signin" action="../PHP/ConsultGanancias.php" method="POST">
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Dar Baja</button>
-</form>
+<hr>
+
+<h2>Ganacia Totales del año <?php echo $year ?></h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Año</th>
+                  <th>Mes</th>
+                  <th>Ganacia Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Enero</td>
+                  <th><?php echo "$ ".$enero." MX" ?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Febrero</td>
+                  <th><?php echo "$ ".$febrero." MX" ?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Marzo</td>
+                  <th><?php echo "$ ".$marzo." MX"?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Abril</td>
+                  <th><?php echo "$ ".$abril." MX" ?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Mayo</td>
+                  <th><?php echo "$ ".$mayo." MX" ?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Junio</td>
+                  <th><?php echo "$ ".$junio." MX" ?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Julio</td>
+                  <th><?php echo "$ ".$julio." MX"?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Agosto</td>
+                  <th><?php echo "$ ".$agosto." MX" ?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Septiembre</td>
+                  <th><?php echo "$ ".$septiembre." MX" ?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Octubre</td>
+                  <th><?php echo "$ ".$octubre." MX" ?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Noviembre</td>
+                  <th><?php echo "$ ".$noviembre." MX" ?> </th>
+                </tr>
+                <tr>
+                  <th><?php echo $year ?> </th>
+                  <td>Diciembre</td>
+                  <th><?php echo "$ ".$diciembre." MX" ?> </th>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
 
   <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -84,12 +166,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
   <script>
     var ctx = document.getElementById("myChart");
+    var dataArray = [<?php echo join(',',$arrayData); ?>];
     var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ["Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+        labels: ["Enero", "Febrero", "Marzo", "Abril","Mayo" ,"Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
         datasets: [{
-          data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+          data: dataArray,
           lineTension: 0,
           backgroundColor: 'transparent',
           borderColor: '#007bff',
