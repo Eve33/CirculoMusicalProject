@@ -12,4 +12,13 @@ $consultR = $consult->consultRenta();
 
 $consultR1 = $consult->consultRenta();
 
+$consultR2 = $consult->consultRenta();
+
+$consultIDR = $consult->consultRenta();
+
+$consultIDP = $consult->consultProduct();
+
+$consultDR = $consult->consultDetalleRent();
+
+$consultDR1 = $consult->consultDetalleRent();
 ?>

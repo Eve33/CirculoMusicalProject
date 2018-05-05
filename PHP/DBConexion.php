@@ -374,12 +374,16 @@ class User
             else{
 
                 $state = "Aprobado";
-
-                $sql1 = "INSERT INTO `evento`(`idSolicitud`,`nombre`, `fecha`, `locacion`, `numeroEntradas`, `precioEntrada`, `idArtista`) VALUES (?,?,?,?,?,?,?)";
+                $sql0 = "SELECT `precioContratacion`  FROM `artista` WHERE `idArtista` = ?";
+                $sql1 = "INSERT INTO `evento`(`idSolicitud`,`nombre`, `fecha`, `locacion`, `numeroEntradas`, `precioEntrada`, `idArtista`, `precioTotal`) VALUES (?,?,?,?,?,?,?,?)";
                 $sql2 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
+                $artist = $this->db->prepare($sql);
                 $instruccion = $this->db->prepare($sql1);              
                 $instruccion2 = $this->db->prepare($sql2);
-                $instruccion->execute(array($idSolic, $nombreEve, $fecha, $locacion, $nEntr, $pEntr, $idArt));
+                $artist->execute(array($idArt));
+                $precioContArt = $artist->fetch(PDO::FETCH_ASSOC)['precioContratacion'];
+                $precioT = floatval($precioContArt) + intval($nEntr) *floatval($pEntr);
+                $instruccion->execute(array($idSolic, $nombreEve, $fecha, $locacion, $nEntr, $pEntr, $idArt, $precioT));
                 $instruccion2->execute(array($state, $idSolic));
 
                 $_SESSION['insertEve'] = "El evento se ha dado de alta correctamente.";
@@ -507,8 +511,9 @@ class User
         try{
 
             $state = "Aprobado";
+            $state2 = 'En renta';
 
-            $sql = "INSERT INTO `renta`(`idSolicitud`, `fecha`, `hora`, `cantDias`,`total`) VALUES (?,?,?,?,?)";    
+            $sql = "INSERT INTO `renta`(`idSolicitud`, `fecha`, `hora`, `cantDias`, `estado`, `total`) VALUES (?,?,?,?,?,?)";    
             $sql2 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
             $instruccion = $this->db->prepare($sql);
             $instruccion2 = $this->db->prepare($sql2);
@@ -517,22 +522,22 @@ class User
             $dateActual = date('Y-m-d');
             $price = 0.00;
 
-            $instruccion->execute(array($idSolic, $dateActual, $timeActual, $cantDias, $price));
+            $instruccion->execute(array($idSolic, $dateActual, $timeActual, $cantDias, $state2, $price));
             $instruccion2->execute(array($state, $idSolic));
 
             $_SESSION['insertVent'] = "La renta se ha insertado correctamente.";
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['insertVent'] = "La renta no se ha insertado correctamente." . $ex.getMessage();            
+            $_SESSION['insertRent'] = "La renta no se ha insertado correctamente." . $ex;            
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
     }
 
-    public function deleteRenta($idRent)
+    public function updateRenta($idRent, $cDias)
     {
         try {  
-            $state = "Cancelado";
+            $state = "Modificado";
 
             $sql = "SELECT `idSolicitud` FROM `renta` WHERE `idRenta` = ?";
             $solic = $this->db->prepare($sql);  
@@ -542,19 +547,77 @@ class User
             $idSolic = $v['idSolicitud'];
 
             $sql1 = "UPDATE `solicitud` SET `estado`= ? WHERE `idSolicitud`=?";
-            $sql2 = "DELETE FROM `renta` WHERE `idRenta` = ?";
+            $sql2 = "UPDATE `renta` SET `cantDias`= ? WHERE `idRenta` = ?";
             $instruccion1 = $this->db->prepare($sql1);
             $instruccion2 = $this->db->prepare($sql2);
             $instruccion1->execute(array($state, $idSolic));
-            $instruccion2->execute(array($idRent));
+            $instruccion2->execute(array($cDias,$idRent));
 
-            $_SESSION['deleteRent'] = "La renta se ha eliminado correctamente.";
+            $_SESSION['deleteRent'] = "La renta se ha modificado correctamente.";
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['deleteRent'] = "El artista no se ha eliminado correctamente." . $ex.getMessage();            
+            $_SESSION['deleteRent'] = "La renta no se ha eliminado correctamente." . $ex.getMessage();            
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
+    }
+
+    //Para DETALLE RENTA 
+
+    public function consultDetalleRent(){
+        try {
+            $sql = "SELECT * FROM `detallerenta` ORDER BY `idRenta`";
+            $detrents = $this->db->prepare($sql);  
+            $detrents->execute();
+            $table = $detrents;
+            return $table;
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener la tabla de detalle renta." . $ex->getMessage();
+        } 
+    }
+
+    public function insertDR($idRent, $idProd, $cant, $desc){
+        try {  
+            
+            $sql = "SELECT `cantidadExistencia` FROM `inventario` WHERE `idProducto` = ?";
+            $prods =$this->db->prepare($sql); 
+            $prods->execute(array($idProd));
+            $cantPI = $prods->fetch(PDO::FETCH_ASSOC)['cantidadExistencia'];
+
+            if(intval($cantPI)>=$cant)
+            {
+                $subtotal = 0.00;
+                $sql = "INSERT INTO `detallerenta`(`idRenta`, `idProducto`, `cantidad`, `descuento`, `subtotal`) VALUES (?,?,?,?,?)";
+                $instruccion =$this->db->prepare($sql); 
+                $instruccion->execute(array($idRent, $idProd, $cant, $desc, $subtotal));
+
+                $_SESSION['insertDR'] = "El detalle de renta se ha insertado correctamente.";
+                header('Location: ../UserAdmin/AdminRenta.php'); 
+            }
+            else{
+                $_SESSION['insertDR'] = "Error, la cantidad excede de existencias del producto.";
+                header('Location: ../UserAdmin/AdminRenta.php');  
+            }
+        }
+        catch (PDOException $ex) {
+            $_SESSION['insertDR'] = "Error no se ha insertado el detalle de renta." . $ex.getMessage();   
+            header('Location: ../Contact/AdminRenta.php');  
+        }
+    }
+
+    public function deleteDR($idRent, $idDR)
+    {
+        try {
+            $sql = "SELECT * FROM `detallerenta` ORDER BY `idRenta`";
+            $detrents = $this->db->prepare($sql);  
+            $detrents->execute();
+            $table = $detrents;
+            return $table;
+        }
+        catch (PDOException $ex) {
+            echo "Error al eliminar el detalle de renta." . $ex->getMessage();
+        } 
     }
 
     //PARA CLIENTE

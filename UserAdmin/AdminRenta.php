@@ -108,12 +108,16 @@
       ?>
       </select>
       <h6>Cantidad Días</h6>
-      <input type="number" placeholder="0" min="0" name="precioUni" class="form-control" required>
-     
+      <input type="number" placeholder="0" min="0" name="cantDias" class="form-control" required>   
+ 
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['insertRent']))
-                  echo $_SESSION['insertRent'];
+              {
+                echo $_SESSION['insertRent'];
+                unset($_SESSION['insertRent']);
+              }
+                  
           ?>
       </p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Renta</button>
@@ -129,40 +133,138 @@
         <div class="col-1 headerTableA">Fecha</div>
         <div class="col-1 headerTableA">Hora</div>
         <div class="col-1 headerTableA">Cant. Días</div>
+        <div class="col-1 headerTableA">Estado</div>
         <div class="col-1 headerTableA">Total</div>
       </div>
       <?php
         while($v = $consultR->fetch(PDO::FETCH_ASSOC))
         {
-          echo '<div class="row"> <div class="col-1">'.$v['idVenta'].'</div> <div class="col-1">'.$v['idSolicitud'].'</div> <div class="col-1">'.$v['fecha'].'</div> <div class="col-1">'.$v['hora'].'</div> <div class="col-1">'.$v['cantDias'].'</div> <div class="col-1">'.$v['total'].'</div> </div>';
+          echo '<div class="row"> <div class="col-1">'.$v['idRenta'].'</div> <div class="col-1">'.$v['idSolicitud'].'</div> <div class="col-1">'.$v['fecha'].'</div> <div class="col-1">'.$v['hora'].'</div> <div class="col-1">'.$v['cantDias'].'</div> <div class="col-1">'.$v['estado'].'</div> <div class="col-1">'.$v['total'].'</div> </div>';
         } 
       ?>
         <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </div>
 
-    <form class="form-signin" action="../PHP/DeleteRent.php" method="POST">
+    <form class="form-signin" action="../PHP/UpdateRent.php" method="POST">
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
-      <h1 class="h3 mb-3 font-weight-normal">Baja de Renta</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Modificar Renta</h1>
       <h6>ID Renta</h6>
       <select name="idRent" class="form-control" required autofocus>
         <?php
         while($d = $consultR1->fetch(PDO::FETCH_ASSOC))
         {
-          echo'<option value='.$d['idVenta'].'>'.$d['idVenta'] .' </option>';
+          echo'<option value='.$d['idRenta'].'>'.$d['idRenta'] .' </option>';
         } 
       ?>
       </select>
+      <h6>Cantidad Días</h6>
+      <input type="number" placeholder="0" min="0" name="cantDias" class="form-control" required>   
       <p class="messageAlert">
         <?php
-              if(isset($_SESSION['deleteRent']))
-                  echo $_SESSION['deleteRent'];
+              if(isset($_SESSION['updateRent']))
+              {
+                echo $_SESSION['updateRent'];
+                unset($_SESSION['updateRent']);
+              }            
           ?>
       </p>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar Renta</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Modificar Renta</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
+
+    <form class="form-signin" action="../PHP/InsertDR.php" method="POST">
+      <a href="../Cover/Cover.html">
+        <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
+      </a>
+      <h1 class="h3 mb-3 font-weight-normal">Agregar Detalle Venta</h1>
+      <h6>ID Renta</h6>
+      <select name="idRent" class="form-control" required autofocus>
+        <?php
+        while($r = $consultIDR->fetch(PDO::FETCH_ASSOC))
+        {
+          echo'<option value='.$r['idRenta'].'>'.$r['idRenta'] .' </option>';
+        } 
+      ?>
+      </select>
+      <h6>ID Producto</h6>
+      <select name="idProd" class="form-control" required autofocus>
+        <?php
+        while($p = $consultIDP->fetch(PDO::FETCH_ASSOC))
+        {
+          echo'<option value='.$p['idProducto'].'>'.$p['idProducto'] .' </option>';
+        } 
+      ?>
+      </select>
+      <h6>Cantidad Producto</h6>
+      <input type="number" placeholder="0" min="0" name="cantProd" class="form-control" required>   
+      <h6>Descuento (%)</h6>
+      <input type="number" placeholder="0" min="0" name="cantDesc" class="form-control" required>   
+      <p class="messageAlert">
+        <?php
+              if(isset($_SESSION['insertDR']))
+              {    echo $_SESSION['insertDR'];
+                  unset($_SESSION['insertDR']);
+              }
+          ?>
+      </p>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Insertar DV</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+    </form>
+
+
+    <div class="table-consult">
+      <h3>Detalles de Renta</h3>
+      <p>Esta tabla te permitirá ver los detalles de renta de todas tus ventas.</p>
+      <div class="row">
+        <div class="col-1 headerTableA">ID Detalle Renta</div>
+        <div class="col-1 headerTableA">ID Renta</div>
+        <div class="col-1 headerTableA">ID Producto</div>
+        <div class="col-1 headerTableA">Cantidad</div>
+        <div class="col-1 headerTableA">Descuento</div>
+        <div class="col-1 headerTableA">Subtotal</div>
+      </div>
+      <?php
+        while($dv = $consultDR->fetch(PDO::FETCH_ASSOC))
+        {
+          echo '<div class="row"> <div class="col-1">'.$dv['idDetalleRenta'].'</div> <div class="col-1">'.$dv['idRenta'].'</div> <div class="col-1">'.$dv['idProducto'].'</div> <div class="col-1">'.$dv['cantidad'].'</div> <div class="col-1">'.$dv['descuento'].'</div> <div class="col-1">'.$dv['subtotal'].'</div> </div>';
+        } 
+      ?>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+    </div>
+
+
+    <form class="form-signin" action="../PHP/DeleteDR.php" method="POST">
+      <a href="../Cover/Cover.html">
+        <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
+      </a>
+      <h1 class="h3 mb-3 font-weight-normal">Elimnar Detalle Venta</h1>
+      <h6>ID Renta</h6>
+      <select name="idDR1" class="form-control" required autofocus>
+        <?php
+        while($r = $consultR2->fetch(PDO::FETCH_ASSOC))
+        {
+          echo'<option value='.$r['idRenta'].'>'.$r['idRenta'] .' </option>';
+        } 
+      ?>
+      </select>
+      <h6>ID Detalle Renta</h6>
+      <select name="idDR1" class="form-control" required autofocus>
+        <?php
+        while($dv = $consultDR1->fetch(PDO::FETCH_ASSOC))
+        {
+          echo'<option value='.$dv['idDetalleRenta'].'>'.$dv['idDetalleRenta'] .' </option>';
+        } 
+      ?>
+      </select>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar DR</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+
+
+      </form>
+
+
 
     <main role="main">
       <!-- Marketing messaging and featurettes
