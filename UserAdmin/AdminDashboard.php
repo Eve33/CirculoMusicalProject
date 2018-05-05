@@ -37,11 +37,13 @@
           <img src="../resources/userImage.jpg">
         </li>
         <li class="nav-item">
-          <p class="nav-link nameUser">
-
-          </p>
+        <p class="nav-link nameUser">
+              <?php
+                      echo "Bienvenido ". "<b>{$_SESSION['loginuser']}</b>";
+                  ?>
+            </p>
         </li>
-        <li class="nav-item active font-weight-bold">
+        <li class="nav-item ">
           <a class="nav-link" href="../UserAdmin/AdminArtist.php">ADMIN Artistas</a>
         </li>
         <li class="nav-item">
@@ -62,7 +64,7 @@
         <li class="nav-item ">
           <a class="nav-link" href="../UserAdmin/AdminComents.php">ADMIN Coments Pub</a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item active font-weight-bold">
           <a class="nav-link" href="../UserAdmin/AdminDashboard.php">ADMIN Dashboard Ganancias</a>
         </li>
       </ul>

@@ -38,14 +38,14 @@
           <li>
             <img src="../resources/userImage.jpg">
           </li>
-          <li class="nav-item">
+          <li class="nav-item ">
             <p class="nav-link nameUser">
               <?php
                       echo "Bienvenido ". "<b>{$_SESSION['loginuser']}</b>";
                   ?>
             </p>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active font-weight-bold">
             <a class="nav-link" href="../UserClient/ClientSolic.php">CLIENT Solicitudes</a>
           </li>
         </ul>

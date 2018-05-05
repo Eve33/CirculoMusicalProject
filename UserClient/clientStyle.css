@@ -5,6 +5,7 @@
 .navbar img{
   height: 4rem;
   border-bottom: 0.3rem solid rgb(47, 255, 64);
+  border-radius: 0.5rem;
 }
 
 body {
