@@ -63,7 +63,7 @@
   </nav>
 
   <main role="main" class="col-md-9 m-sm-auto col-lg-10 px-4 py-4">
-    <h1 class="h2">Ganancias del Año</h1>
+    <h1 class="h2">Ganancias del año</h1>
     <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
   </main>
 

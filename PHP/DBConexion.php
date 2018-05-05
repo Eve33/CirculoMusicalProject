@@ -606,12 +606,4 @@ class User
             header('Location: ../UserClient/ClientSolic.php');  
         }
     }
-
-    //Para ESTADISTICAS DEL AÑO POR MESES
-    public function estadistiForcMonth()
-    {
-        $dateActual = date('Y-m-d');
-        //$partesFecha = explode("", $pizza);
-        echo $dateActual;
-    }
 }
