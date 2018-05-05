@@ -394,7 +394,7 @@ class User
                 $instruccion2 = $this->db->prepare($sql2);
                 $artist->execute(array($idArt));
                 $precioContArt = $artist->fetch(PDO::FETCH_ASSOC)['precioContratacion'];
-                $precioT = floatval($precioContArt) + intval($nEntr) *floatval($pEntr);
+                $precioT = floatval($precioContArt) + intval($nEntr) *floatval($pEntr) * 0.3;
                 $instruccion->execute(array($idSolic, $nombreEve, $fecha, $locacion, $nEntr, $pEntr, $idArt, $precioT));
                 $instruccion2->execute(array($state, $idSolic));
 
