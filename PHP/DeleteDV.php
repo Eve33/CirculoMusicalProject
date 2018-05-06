@@ -1,10 +1,11 @@
 <?php
 
-$idVent = $_POST['idVent'];
+$idV= $_POST['idV'];
+$idDV = $_POST['idDV'];
 
 include 'DBconexion.php';
 
 $user = new User("localhost", "", "dbcirculomusical", "root", "");
-$user->deleteVenta($idVent);
+$user->deleteDV($idV, $idDV);
 
 ?>

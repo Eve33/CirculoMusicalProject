@@ -15,7 +15,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../resources/iconCM.png">
 
-    <title>ADMIN VENTS | CM</title>
+    <title>ADMIN RENTS | CM</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -75,7 +75,7 @@
 
     <div class="table-consult">
       <h3>Solicitudes Clientes</h3>
-      <p>Aquí estan las solicitudes de eventos de tus clientes, tomate un tiempo para darles respuesta.</p>
+      <p>Aquí estan las solicitudes de ventas de tus clientes, tomate un tiempo para darles respuesta.</p>
       <div class="row">
         <div class="col-md-2 headerTableA">ID Solicitud</div>
         <div class="col-md-2 headerTableA">Fecha</div>
@@ -93,7 +93,7 @@
     </div>
 
 
-  <form class="form-signin" action="../PHP/InsertVent.php" method="POST">
+    <form class="form-signin" action="../PHP/InsertVent.php" method="POST">
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
@@ -110,15 +110,19 @@
       <p class="messageAlert">
         <?php
               if(isset($_SESSION['insertVent']))
-                  echo $_SESSION['insertVent'];
+              {
+                echo $_SESSION['insertVent'];
+                unset($_SESSION['insertVent']);
+              }
+                  
           ?>
       </p>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Venta</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Renta</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
     <div class="table-consult">
-      <h3>Ventas</h3>
+      <h3>Venta</h3>
       <p>Esta tabla te permitirá administrar a tus ventas.</p>
       <div class="row">
         <div class="col-1 headerTableA">ID Venta</div>
@@ -136,27 +140,100 @@
         <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </div>
 
-    <form class="form-signin" action="../PHP/DeleteVent.php" method="POST">
+    <form class="form-signin" action="../PHP/InsertDV.php" method="POST">
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
-      <h1 class="h3 mb-3 font-weight-normal">Baja de Venta</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Agregar Detalle Venta</h1>
       <h6>ID Venta</h6>
       <select name="idVent" class="form-control" required autofocus>
         <?php
-        while($d = $consultV1->fetch(PDO::FETCH_ASSOC))
+        while($r = $consultV1->fetch(PDO::FETCH_ASSOC))
         {
-          echo'<option value='.$d['idVenta'].'>'.$d['idVenta'] .' </option>';
+          echo'<option value='.$r['idVenta'].'>'.$r['idVenta'] .' </option>';
+        } 
+      ?>
+      </select>
+      <h6>ID Producto</h6>
+      <select name="idProd" class="form-control" required autofocus>
+        <?php
+        while($p = $consultIDP->fetch(PDO::FETCH_ASSOC))
+        {
+          echo'<option value='.$p['idProducto'].'>'.$p['idProducto'] .' </option>';
+        } 
+      ?>
+      </select>
+      <h6>Cantidad Producto</h6>
+      <input type="number" placeholder="0" min="0" name="cantProd" class="form-control" required>
+      <h6>Descuento (%)</h6>
+      <input type="number" placeholder="0" min="0" name="cantDesc" class="form-control" required>
+      <p class="messageAlert">
+        <?php
+              if(isset($_SESSION['insertDV']))
+              {    echo $_SESSION['insertDV'];
+                  unset($_SESSION['insertDV']);
+              }
+          ?>
+      </p>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Insertar DV</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+    </form>
+
+
+    <div class="table-consult">
+      <h3>Detalles de Venta</h3>
+      <p>Esta tabla te permitirá ver los detalles de venta de todas tus ventas.</p>
+      <div class="row">
+        <div class="col-1 headerTableA">ID Detalle Venta</div>
+        <div class="col-1 headerTableA">ID Venta</div>
+        <div class="col-1 headerTableA">ID Producto</div>
+        <div class="col-1 headerTableA">Cantidad</div>
+        <div class="col-1 headerTableA">Descuento</div>
+        <div class="col-1 headerTableA">Subtotal</div>
+      </div>
+      <?php
+        while($dv = $consultDV->fetch(PDO::FETCH_ASSOC))
+        {
+          echo '<div class="row"> <div class="col-1">'.$dv['idDetalleVenta'].'</div> <div class="col-1">'.$dv['idVenta'].'</div> <div class="col-1">'.$dv['idProducto'].'</div> <div class="col-1">'.$dv['cantidad'].'</div> <div class="col-1">'.$dv['descuento'].'</div> <div class="col-1">'.$dv['subtotal'].'</div> </div>';
+        } 
+      ?>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
+    </div>
+
+
+    <form class="form-signin" action="../PHP/DeleteDV.php" method="POST">
+      <a href="../Cover/Cover.html">
+        <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
+      </a>
+      <h1 class="h3 mb-3 font-weight-normal">Elimnar Detalle Venta</h1>
+      <h6>ID Venta</h6>
+      <select name="idV" class="form-control" required autofocus>
+        <?php
+        while($r = $consultV2->fetch(PDO::FETCH_ASSOC))
+        {
+          echo'<option value='.$r['idVenta'].'>'.$r['idVenta'] .' </option>';
+        } 
+      ?>
+      </select>
+      <h6>ID Detalle Venta</h6>
+      <select name="idDV" class="form-control" required autofocus>
+        <?php
+        while($dv = $consultDV1->fetch(PDO::FETCH_ASSOC))
+        {
+          echo'<option value='.$dv['idDetalleVenta'].'>'.$dv['idDetalleVenta'] .' </option>';
         } 
       ?>
       </select>
       <p class="messageAlert">
         <?php
-              if(isset($_SESSION['deleteVent']))
-                  echo $_SESSION['deleteVent'];
+              if(isset($_SESSION['deleteDV']))
+              {
+                echo $_SESSION['deleteDV'];
+                unset($_SESSION['deleteDV']);
+              }            
           ?>
       </p>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar Venta</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Eliminar DV</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 

@@ -503,10 +503,64 @@ class User
         }
     }
 
+    //Para DETALLE VENTA
 
+    public function consultDetalleVent(){
+        try {
+            $sql = "SELECT * FROM `detalleventa` ORDER BY `idVenta`";
+            $detvents = $this->db->prepare($sql);  
+            $detvents->execute();
+            $table = $detvents;
+            return $table;
+        }
+        catch (PDOException $ex) {
+            echo "Error al obtener la tabla de detalle venta." . $ex->getMessage();
+        } 
+    }
 
+    public function insertDV($idVent, $idProd, $cant, $desc){
+        try {  
+            
+            $sql = "SELECT `cantidadExistencia` FROM `inventario` WHERE `idProducto` = ?";
+            $prods =$this->db->prepare($sql); 
+            $prods->execute(array($idProd));
+            $cantPI = $prods->fetch(PDO::FETCH_ASSOC)['cantidadExistencia'];
 
+            if(intval($cantPI)>=$cant)
+            {
+                $subtotal = 0.00;
+                $sql2 = "INSERT INTO `detalleventa`(`idVenta`, `idProducto`, `cantidad`, `descuento`, `subtotal`) VALUES (?,?,?,?,?)";
+                $instruccion =$this->db->prepare($sql2); 
+                $instruccion->execute(array($idVent, $idProd, $cant, $desc, $subtotal));
 
+                $_SESSION['insertDV'] = "El detalle de venta se ha insertado correctamente.";
+                header('Location: ../UserAdmin/AdminVenta.php');                
+            }
+            else{
+                $_SESSION['insertDV'] = "Error, la cantidad excede de existencias del producto.";
+                header('Location: ../UserAdmin/AdminVenta.php');  
+            }
+        }
+        catch (PDOException $ex) {
+            $_SESSION['insertDV'] = "Error no se ha insertado el detalle de venta." . $ex;   
+            header('Location: ../UserAdmin/AdminVenta.php');  
+        }
+    }
+
+    public function deleteDV($idVent, $idDV) {
+        try {
+            $sql = "DELETE FROM `detalleventa` WHERE `idVenta` = ? AND `idDetalleVenta` = ?";
+            $detr = $this->db->prepare($sql);  
+            $detr->execute(array($idVent, $idDV));
+
+            $_SESSION['deleteDV'] = "Se ha eliminado correctamente el detalle de venta.";
+            header('Location: ../UserAdmin/AdminVenta.php'); 
+        }
+        catch (PDOException $ex) {
+            $_SESSION['deleteDV'] = "Error no se ha eliminado el detalle de venta." . $ex.getMessage();
+            header('Location: ../UserAdmin/AdminVenta.php'); 
+        } 
+    }
 
     //Para RENTA
 
@@ -541,7 +595,7 @@ class User
             $instruccion->execute(array($idSolic, $dateActual, $timeActual, $cantDias, $state2, $price));
             $instruccion2->execute(array($state, $idSolic));
 
-            $_SESSION['insertVent'] = "La renta se ha insertado correctamente.";
+            $_SESSION['insertRent'] = "La renta se ha insertado correctamente.";
             header('Location: ../UserAdmin/AdminRenta.php');  
         }
         catch (PDOException $ex) {
@@ -644,18 +698,17 @@ class User
         }
         catch (PDOException $ex) {
             $_SESSION['insertDR'] = "Error no se ha insertado el detalle de renta." . $ex.getMessage();   
-            header('Location: ../Contact/AdminRenta.php');  
+            header('Location: ../UserAdmin/AdminRenta.php');  
         }
     }
 
-    public function deleteDR($idRent, $idDR)
-    {
+    public function deleteDR($idRent, $idDR) {
         try {
             $sql = "DELETE FROM `detallerenta` WHERE `idRenta` = ? AND `idDetalleRenta` = ?";
             $detr = $this->db->prepare($sql);  
             $detr->execute(array($idRent, $idDR));
 
-            $_SESSION['deleteDR'] = "Se ha eliminado correctamente el detalle de venta.";
+            $_SESSION['deleteDR'] = "Se ha eliminado correctamente el detalle de renta.";
             header('Location: ../UserAdmin/AdminRenta.php'); 
         }
         catch (PDOException $ex) {
@@ -684,7 +737,7 @@ class User
             return $table;
         }
         catch (PDOException $ex) {
-            echo "Error al obtener la tabla de solicitud." . $ex->getMessage();
+            echo "Error al obtener la tabla de solicitud." . $ex;
         } 
     }
 
@@ -709,7 +762,7 @@ class User
             header('Location: ../UserClient/ClientSolic.php');  
         }
         catch (PDOException $ex) {
-            $_SESSION['insertSolic'] = "La solicitud no se ha dado de alta correctamente." . $ex.getMessage();            
+            $_SESSION['insertSolic'] = "La solicitud no se ha dado de alta correctamente." . $ex;            
             header('Location: ../UserClient/ClientSolic.php');  
         }
     }

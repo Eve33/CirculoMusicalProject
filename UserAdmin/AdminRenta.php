@@ -75,7 +75,7 @@
 
     <div class="table-consult">
       <h3>Solicitudes Clientes</h3>
-      <p>Aquí estan las solicitudes de eventos de tus clientes, tomate un tiempo para darles respuesta.</p>
+      <p>Aquí estan las solicitudes de rentas de tus clientes, tomate un tiempo para darles respuesta.</p>
       <div class="row">
         <div class="col-md-2 headerTableA">ID Solicitud</div>
         <div class="col-md-2 headerTableA">Fecha</div>
@@ -206,20 +206,15 @@
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
-
-
-
-
-
     <form class="form-signin" action="../PHP/InsertDR.php" method="POST">
       <a href="../Cover/Cover.html">
         <img class="mb-4" src="../resources/iconCM.png" alt="" width="72" height="72">
       </a>
-      <h1 class="h3 mb-3 font-weight-normal">Agregar Detalle Venta</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Agregar Detalle Renta</h1>
       <h6>ID Renta</h6>
       <select name="idRent" class="form-control" required autofocus>
         <?php
-        while($r = $consultIDR->fetch(PDO::FETCH_ASSOC))
+        while($r = $consultR3->fetch(PDO::FETCH_ASSOC))
         {
           echo'<option value='.$r['idRenta'].'>'.$r['idRenta'] .' </option>';
         } 
@@ -246,14 +241,14 @@
               }
           ?>
       </p>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Insertar DV</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Insertar DR</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>
 
 
     <div class="table-consult">
       <h3>Detalles de Renta</h3>
-      <p>Esta tabla te permitirá ver los detalles de renta de todas tus ventas.</p>
+      <p>Esta tabla te permitirá ver los detalles de renta de todas tus rentas.</p>
       <div class="row">
         <div class="col-1 headerTableA">ID Detalle Renta</div>
         <div class="col-1 headerTableA">ID Renta</div>

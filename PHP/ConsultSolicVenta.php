@@ -12,4 +12,12 @@ $consultV = $consult->consultVenta();
 
 $consultV1 = $consult->consultVenta();
 
+$consultIDP = $consult->consultProdInvent();
+
+$consultDV = $consult->consultDetalleVent();
+
+$consultV2 = $consult->consultVenta();
+
+$consultDV1 = $consult->consultDetalleVent();
+
 ?>
