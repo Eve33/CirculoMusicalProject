@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2018 a las 02:16:05
+-- Tiempo de generación: 06-05-2018 a las 02:22:29
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -36,13 +36,6 @@ CREATE TABLE `artista` (
   `precioContratacion` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `artista`
---
-
-INSERT INTO `artista` (`idArtista`, `nombre`, `genero`, `biografia`, `precioContratacion`) VALUES
-(1, 'Ariana Grande', 'Pop', 'Ariana Grande es una joven actriz y cantautora norteamericana que saltarÃ­a a la fama a travÃ©s del musical de Broadway 13 y dos aÃ±os mÃ¡s tarde, en 2010, se convertirÃ­a en una referencia teen graci', 9999);
-
 -- --------------------------------------------------------
 
 --
@@ -56,13 +49,6 @@ CREATE TABLE `comentpub` (
   `telefono` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `mensaje` varchar(300) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `comentpub`
---
-
-INSERT INTO `comentpub` (`idComentPub`, `nombre`, `email`, `telefono`, `mensaje`) VALUES
-(1, 'Eddie Sanchez', 'eddcsanchez@gmail.com', '4446587980', 'Me encanta su pagina jajajaja.');
 
 -- --------------------------------------------------------
 
@@ -112,13 +98,6 @@ CREATE TABLE `evento` (
   `precioTotal` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `evento`
---
-
-INSERT INTO `evento` (`idEvento`, `idSolicitud`, `nombre`, `fecha`, `locacion`, `idArtista`, `numeroEntradas`, `precioEntrada`, `precioTotal`) VALUES
-(3, 4, 'Ariana Grande Tout', '2018-05-05', 'CD MX', 1, 1000, 100, 100000);
-
 -- --------------------------------------------------------
 
 --
@@ -157,13 +136,6 @@ CREATE TABLE `inventario` (
   `horaEntrada` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `inventario`
---
-
-INSERT INTO `inventario` (`idProducto`, `cantidadExistencia`, `fechaEntrada`, `horaEntrada`) VALUES
-(1, 5, '2018-05-05', '22:51:09');
-
 -- --------------------------------------------------------
 
 --
@@ -179,14 +151,6 @@ CREATE TABLE `producto` (
   `precioVenta` float NOT NULL,
   `precioRenta` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`idProducto`, `nombre`, `descripcion`, `categoria`, `precioUnitario`, `precioVenta`, `precioRenta`) VALUES
-(1, 'Celular', 'Celular Nuevo', 'Iluminacion', 23213.2, 1232.22, 231312),
-(2, 'SCSAS', 'JKSADS', 'Estructuras', 13424, 413, 3242430);
 
 -- --------------------------------------------------------
 
@@ -204,14 +168,6 @@ CREATE TABLE `renta` (
   `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `renta`
---
-
-INSERT INTO `renta` (`idRenta`, `idSolicitud`, `fecha`, `hora`, `cantDias`, `estado`, `total`) VALUES
-(1, 3, '2018-05-05', '00:00:00', 4, 'Entregado', 0),
-(2, 7, '2018-05-06', '01:31:34', 6, 'En Renta', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -226,19 +182,6 @@ CREATE TABLE `solicitud` (
   `descripcion` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
   `estado` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `solicitud`
---
-
-INSERT INTO `solicitud` (`idSolicitud`, `idUsuario`, `fecha`, `asunto`, `descripcion`, `estado`) VALUES
-(1, 2, '2018-05-04', 'Venta', 'Quiero que me venda una maquina de humo.', 'Rechazado'),
-(2, 2, '2018-05-05', 'Evento', 'hola', 'Cancelado'),
-(3, 2, '2018-05-05', 'Renta', 'hola', 'Modificado'),
-(4, 2, '2018-05-05', 'Evento', 'Ariana Grande Tout', 'Aprobado'),
-(5, 2, '2018-05-06', 'Venta', 'qwrlnqwd', 'Aprobado'),
-(6, 2, '2018-05-06', 'Evento', 'dfafafasf', 'En Espera'),
-(7, 2, '2018-05-06', 'Renta', 'asfsafsa', 'Aprobado');
 
 -- --------------------------------------------------------
 
@@ -275,13 +218,6 @@ CREATE TABLE `venta` (
   `hora` time NOT NULL,
   `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `venta`
---
-
-INSERT INTO `venta` (`idVenta`, `idSolicitud`, `fecha`, `hora`, `total`) VALUES
-(1, 5, '2018-05-06', '01:34:52', 0);
 
 --
 -- Índices para tablas volcadas
@@ -382,13 +318,13 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `artista`
 --
 ALTER TABLE `artista`
-  MODIFY `idArtista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idArtista` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `comentpub`
 --
 ALTER TABLE `comentpub`
-  MODIFY `idComentPub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idComentPub` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `detallerenta`
@@ -400,13 +336,13 @@ ALTER TABLE `detallerenta`
 -- AUTO_INCREMENT de la tabla `detalleventa`
 --
 ALTER TABLE `detalleventa`
-  MODIFY `idDetalleVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idDetalleVenta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `info_usuario`
@@ -418,19 +354,19 @@ ALTER TABLE `info_usuario`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `renta`
 --
 ALTER TABLE `renta`
-  MODIFY `idRenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idRenta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `idSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idSolicitud` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -442,7 +378,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
