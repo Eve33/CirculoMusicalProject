@@ -40,9 +40,10 @@
       <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
       <p class="messageAlert">
         <?php
-            if(isset($_SESSION['loginuser']))
+            if(isset($_SESSION['messageAlert']))
             {
-              echo $_SESSION['loginuser']; 
+              echo $_SESSION['messageAlert']; 
+              unset($_SESSION['messageAlert']);
             }
         ?>
       </p>

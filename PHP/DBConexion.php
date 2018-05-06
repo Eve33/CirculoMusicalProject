@@ -58,13 +58,13 @@ class User
                 return true;
             }
             else{
-                $_SESSION['loginuser'] = "El usuario o la contraseña no son válidos con algun registro."; 
+                $_SESSION['messageAlert'] = "El usuario o la contraseña no son válidos con algun registro."; 
                 header('Location: ../LogIn/LogIn.php');                                 
                 return false;
             }
        }catch(PDOException $e)
        {
-            $_SESSION['loginuser'] = "Error en verificar usuario.". $e->getMessage();
+            $_SESSION['messageAlert'] = "Error en verificar usuario.". $e->getMessage();
             header('Location: ../LogIn/LogIn.php');  
        } 
     }
