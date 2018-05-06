@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2018 a las 00:11:34
+-- Tiempo de generación: 06-05-2018 a las 02:16:05
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -87,7 +87,7 @@ CREATE TABLE `detallerenta` (
 
 CREATE TABLE `detalleventa` (
   `idDetalleVenta` int(11) NOT NULL,
-  `IdVenta` int(11) NOT NULL,
+  `idVenta` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `descuento` int(11) NOT NULL,
@@ -209,7 +209,8 @@ CREATE TABLE `renta` (
 --
 
 INSERT INTO `renta` (`idRenta`, `idSolicitud`, `fecha`, `hora`, `cantDias`, `estado`, `total`) VALUES
-(1, 3, '2018-05-05', '00:00:00', 4, 'Entregado', 0);
+(1, 3, '2018-05-05', '00:00:00', 4, 'Entregado', 0),
+(2, 7, '2018-05-06', '01:31:34', 6, 'En Renta', 0);
 
 -- --------------------------------------------------------
 
@@ -234,7 +235,10 @@ INSERT INTO `solicitud` (`idSolicitud`, `idUsuario`, `fecha`, `asunto`, `descrip
 (1, 2, '2018-05-04', 'Venta', 'Quiero que me venda una maquina de humo.', 'Rechazado'),
 (2, 2, '2018-05-05', 'Evento', 'hola', 'Cancelado'),
 (3, 2, '2018-05-05', 'Renta', 'hola', 'Modificado'),
-(4, 2, '2018-05-05', 'Evento', 'Ariana Grande Tout', 'Aprobado');
+(4, 2, '2018-05-05', 'Evento', 'Ariana Grande Tout', 'Aprobado'),
+(5, 2, '2018-05-06', 'Venta', 'qwrlnqwd', 'Aprobado'),
+(6, 2, '2018-05-06', 'Evento', 'dfafafasf', 'En Espera'),
+(7, 2, '2018-05-06', 'Renta', 'asfsafsa', 'Aprobado');
 
 -- --------------------------------------------------------
 
@@ -273,6 +277,13 @@ CREATE TABLE `venta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`idVenta`, `idSolicitud`, `fecha`, `hora`, `total`) VALUES
+(1, 5, '2018-05-06', '01:34:52', 0);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -302,7 +313,7 @@ ALTER TABLE `detallerenta`
 --
 ALTER TABLE `detalleventa`
   ADD PRIMARY KEY (`idDetalleVenta`),
-  ADD KEY `FK_IdVenta` (`IdVenta`) USING BTREE,
+  ADD KEY `FK_IdVenta` (`idVenta`) USING BTREE,
   ADD KEY `FK_idProducto` (`idProducto`) USING BTREE;
 
 --
@@ -383,13 +394,13 @@ ALTER TABLE `comentpub`
 -- AUTO_INCREMENT de la tabla `detallerenta`
 --
 ALTER TABLE `detallerenta`
-  MODIFY `idDetalleRenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idDetalleRenta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleventa`
 --
 ALTER TABLE `detalleventa`
-  MODIFY `idDetalleVenta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDetalleVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `evento`
@@ -413,13 +424,13 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `renta`
 --
 ALTER TABLE `renta`
-  MODIFY `idRenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idRenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `idSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idSolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -431,7 +442,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
